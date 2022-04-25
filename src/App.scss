@@ -1,0 +1,6 @@
+@import './style/variables.scss';
+
+.App {
+  @include h1;
+  text-align: center;
+}

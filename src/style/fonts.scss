@@ -1,0 +1,11 @@
+@include font-face('Raleway', '../../public/fonts/raleway/raleway-bold', 'Bold', 700, normal);
+@include font-face('Raleway', '../../public/fonts/raleway/raleway-light', 'Light', 300, normal);
+@include font-face('Raleway', '../../public/fonts/raleway/raleway-medium', 'Medium', 500, normal);
+@include font-face('Raleway', '../../public/fonts/raleway/raleway-regular', 'Regular', 400, normal);
+@include font-face(
+  'Raleway',
+  '../../public/fonts/raleway/raleway-semi-bold',
+  'SemiBold',
+  600,
+  normal
+);

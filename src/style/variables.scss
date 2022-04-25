@@ -1,0 +1,35 @@
+$large_desktop: 1440px;
+$small_desktop: 1280px;
+
+$large_tablet: 1024px;
+$small_tablet: 768px;
+
+$large_mobile: 580px;
+$small_mobile: 420px;
+
+$primaryColor: #5ece7b;
+$black: #1d1f22;
+$white: #ffffff;
+$textColor: #1d1f22;
+
+$cardHoveredShadow: 0px 4px 35px rgba(168, 172, 176, 0.19);
+
+$primaryFont: 'Raleway', sans-serif;
+
+@mixin font-face($font-family, $font-path, $font-postfix, $font-weight, $font-style) {
+  @font-face {
+    font-weight: $font-weight;
+    font-family: $font-family;
+    font-style: $font-style;
+    src: local('#{$font-family} #{$font-postfix}'), local('#{$font-family}-#{$font-postfix}'),
+      url('#{$font-path}.woff2') format('woff2'), url('#{$font-path}.woff') format('woff');
+  }
+}
+
+@mixin h1() {
+  font-weight: 400;
+  font-size: 42px;
+  line-height: 160%;
+  color: $textColor;
+  font-family: $primaryFont;
+}
