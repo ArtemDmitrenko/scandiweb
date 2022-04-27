@@ -1,0 +1,89 @@
+@import '../../style/variables.scss';
+
+.radioButton {
+  position: relative;
+  display: inline-flex;
+  outline: none;
+  cursor: pointer;
+  user-select: none;
+}
+
+.contentText {
+  border: 1px solid $textColor;
+  font-weight: 400;
+  color: $textColor;
+  padding-left: 1px;
+  padding-right: 1px;
+  font-family: 'Source Sans Pro', sans-serif;
+  text-align: center;
+}
+
+.bigText {
+  width: 63px;
+  height: 45px;
+  letter-spacing: 0.05em;
+  font-size: 16px;
+  line-height: 45px;
+}
+
+.smallText {
+  width: 24px;
+  height: 24px;
+  font-size: 14px;
+  line-height: 160%;
+}
+
+.bigColor {
+  width: 32px;
+  height: 32px;
+  position: relative;
+  border: 1px solid #dce0e7;
+}
+
+.smallColor {
+  width: 16px;
+  height: 16px;
+  position: relative;
+  border: 1px solid #dce0e7;
+}
+
+.input {
+  position: absolute;
+  z-index: -1;
+  width: 0;
+  opacity: 0;
+}
+
+.input:checked + .contentText {
+  color: white;
+  background-color: #1d1f22;
+  border: none;
+}
+
+.input:checked + .bigColor {
+  &:before {
+    content: '';
+    width: 36px;
+    height: 36px;
+    border: 1px solid #5ece7b;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    box-sizing: border-box;
+  }
+}
+
+.input:checked + .smallColor {
+  &:before {
+    content: '';
+    width: 20px;
+    height: 20px;
+    border: 1px solid #5ece7b;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    box-sizing: border-box;
+  }
+}

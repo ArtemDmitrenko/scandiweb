@@ -1,0 +1,27 @@
+@import '../../style/variables.scss';
+
+.total {
+  position: absolute;
+  min-width: 20px;
+  min-height: 20px;
+  background-color: #1d1f22;
+  border-radius: 50%;
+  color: white;
+  user-select: none;
+  font-weight: 700;
+  font-size: 14px;
+  line-height: 16px;
+  font-family: $primaryFont;
+  padding-right: 5px;
+  padding-left: 5px;
+  left: 13px;
+  bottom: 13px;
+}
+
+.button {
+  position: relative;
+}
+
+.hidden {
+  display: none;
+}

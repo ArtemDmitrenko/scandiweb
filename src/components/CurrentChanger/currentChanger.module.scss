@@ -1,0 +1,56 @@
+@import '../../style/variables.scss';
+
+.container {
+  width: fit-content;
+}
+
+.button {
+  display: flex;
+  align-items: center;
+}
+
+.buttonText {
+  margin-right: 10px;
+}
+
+.checkMark {
+  display: inline-block;
+  transform: rotate(45deg);
+  height: 5px;
+  width: 5px;
+  border-bottom: 1px solid #000000;
+  border-right: 1px solid #000000;
+}
+
+.checkMarkClosed {
+  transform: rotate(45deg);
+  transition: all 0.4s;
+}
+.checkMarkOpened {
+  transform: rotate(225deg) translateY(-2px) translateX(-2px);
+  transition: all 0.4s;
+}
+
+.list {
+  width: fit-content;
+  filter: drop-shadow($cardHoveredShadow);
+}
+
+.buttonSelect {
+  width: 100%;
+  height: 45px;
+  font-weight: 500;
+  font-size: 18px;
+  line-height: 160%;
+  color: $textColor;
+  padding: 8px 40px 8px 20px;
+  background-color: white;
+  text-align: left;
+  &:hover {
+    background-color: #eeeeee;
+  }
+}
+
+.hidden {
+  display: none;
+}

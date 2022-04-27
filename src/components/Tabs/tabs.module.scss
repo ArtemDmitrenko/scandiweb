@@ -1,0 +1,31 @@
+@import '../../style/variables.scss';
+
+.list {
+  display: flex;
+}
+
+.listItem {
+  padding: 0 16px 32px;
+  &:focus-within {
+    border-bottom: 2px solid $primaryColor;
+  }
+}
+
+.button {
+  font-family: $primaryFont;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 120%;
+  color: $textColor;
+  text-transform: uppercase;
+  &:focus {
+    font-weight: 600;
+    color: $primaryColor;
+  }
+}
+
+// .active {
+//   font-weight: 600;
+//   color: $primaryColor;
+//   border-bottom: 2px solid $primaryFont;
+// }
