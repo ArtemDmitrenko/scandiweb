@@ -16,7 +16,7 @@ class Attribute extends React.Component {
           {items.map((item, index) => {
             const { id, displayValue, value } = item;
             return (
-              <li key={id}>
+              <li key={id} className={`${size === 'big' ? styles.itemBig : styles.itemSmall}`}>
                 <RadioButton
                   type={type}
                   size={size}

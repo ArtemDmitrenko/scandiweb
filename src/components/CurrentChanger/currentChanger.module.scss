@@ -2,6 +2,7 @@
 
 .container {
   width: fit-content;
+  position: relative;
 }
 
 .button {
@@ -32,8 +33,12 @@
 }
 
 .list {
-  width: fit-content;
   filter: drop-shadow($cardHoveredShadow);
+  position: absolute;
+  top: 30px;
+  right: -10%;
+  width: max-content;
+  z-index: 1;
 }
 
 .buttonSelect {

@@ -1,0 +1,58 @@
+@import '../../style/variables.scss';
+
+.bag {
+  padding: 32px 16px;
+  background-color: white;
+  max-width: 325px;
+}
+.title {
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 160%;
+  color: $textColor;
+  font-family: $primaryFont;
+  margin-bottom: 32px;
+}
+
+.totalText {
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 18px;
+  color: $textColor;
+  font-family: 'Roboto', sans-serif;
+}
+
+.totalPrice {
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 160%;
+  color: $textColor;
+  font-family: $primaryFont;
+}
+
+.amountOfItems {
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 160%;
+  color: $textColor;
+  font-family: $primaryFont;
+}
+
+.product {
+  &:not(:last-child) {
+    margin-bottom: 40px;
+  }
+}
+
+.sum {
+  margin-bottom: 32px;
+  margin-top: 32px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.buttonsContainer {
+  display: flex;
+  justify-content: space-between;
+}

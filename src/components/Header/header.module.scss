@@ -1,0 +1,29 @@
+@import '../../style/variables.scss';
+
+.container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 80px;
+  max-width: 1280px;
+  margin: 0 auto;
+  padding-left: 20px;
+  padding-right: 20px;
+}
+
+.basketCurrencyContainer {
+  display: flex;
+  align-items: center;
+}
+
+.nav {
+  align-self: flex-end;
+}
+
+.current {
+  margin-right: 20px;
+}
+
+.basket {
+  padding-right: 16px;
+}

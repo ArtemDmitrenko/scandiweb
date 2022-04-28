@@ -6,6 +6,7 @@
 
 .listItem {
   padding: 0 16px 32px;
+  border-bottom: 2px solid transparent;
   &:focus-within {
     border-bottom: 2px solid $primaryColor;
   }

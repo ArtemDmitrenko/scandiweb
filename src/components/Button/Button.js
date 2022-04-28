@@ -39,7 +39,7 @@ class Button extends React.Component {
 
 Button.propTypes = {
   isButton: PropTypes.bool.isRequired,
-  buttonType: PropTypes.string.isRequired,
+  buttonType: PropTypes.string,
   disabled: PropTypes.bool,
   text: PropTypes.string.isRequired,
   type: PropTypes.string.isRequired,
@@ -50,7 +50,8 @@ Button.propTypes = {
 Button.defaultProps = {
   disabled: false,
   href: '/',
-  onClick: () => {}
+  onClick: () => {},
+  buttonType: 'button'
 };
 
 export default Button;

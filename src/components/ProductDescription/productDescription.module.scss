@@ -1,0 +1,63 @@
+@import '../../style/variables.scss';
+
+.container {
+  width: fit-content;
+}
+
+.name,
+.brand {
+  color: $textColor;
+  font-family: $primaryFont;
+}
+
+.nameSmall,
+.brandSmall {
+  font-weight: 300;
+  font-size: 16px;
+  line-height: 160%;
+  margin-bottom: 4px;
+}
+
+.nameBig {
+  font-weight: 400;
+  font-size: 30px;
+  line-height: 27px;
+  margin-bottom: 43px;
+}
+
+.brandBig {
+  font-weight: 600;
+  font-size: 30px;
+  line-height: 27px;
+  margin-bottom: 16px;
+}
+
+.price {
+  color: $textColor;
+  font-family: $primaryFont;
+}
+
+.priceSmall {
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 160%;
+  margin-bottom: 8px;
+}
+
+.priceBig {
+  font-weight: 700;
+  font-size: 24px;
+  line-height: 18px;
+  margin-bottom: 8px;
+}
+
+.titlePrice {
+  margin-top: 36px;
+  font-weight: 700;
+  font-size: 18px;
+  line-height: 18px;
+  font-family: 'Roboto Condensed', sans-serif;
+  color: $textColor;
+  text-transform: uppercase;
+  margin-bottom: 10px;
+}

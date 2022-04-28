@@ -4,12 +4,12 @@
   display: block;
   max-width: 386px;
   padding: 16px;
-  background-color: white;
   cursor: pointer;
   transition: filter 0.3s;
   &:hover {
     filter: drop-shadow($cardHoveredShadow);
     transition: all 0.3s;
+    background-color: white;
     & .button {
       opacity: 1;
       transition: opacity 0.8s;

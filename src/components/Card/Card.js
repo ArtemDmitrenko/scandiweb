@@ -22,8 +22,16 @@ class Card extends React.Component {
   }
 
   render() {
-    const { id, name, price, imgSrc, inStock, handleClickOnButton, handleClickOnProductCard } =
-      this.props;
+    const {
+      id,
+      name,
+      price,
+      imgSrc,
+      inStock,
+      brand,
+      handleClickOnButton,
+      handleClickOnProductCard
+    } = this.props;
     return (
       <a className={this.cardClasses} href="/" onClick={() => handleClickOnProductCard(id)}>
         <div className={styles.imageContainer}>
@@ -33,7 +41,9 @@ class Card extends React.Component {
             <img src={basket} alt="Add to basket" />
           </button>
         </div>
-        <p className={inStock ? styles.name : styles.disabledName}>{name}</p>
+        <p className={inStock ? styles.name : styles.disabledName}>
+          {brand} <span className={inStock ? styles.name : styles.disabledName}>{name}</span>
+        </p>
         <p className={inStock ? styles.price : styles.disabledPrice}>{price}</p>
       </a>
     );
@@ -42,6 +52,7 @@ class Card extends React.Component {
 
 Card.propTypes = {
   id: PropTypes.string.isRequired,
+  brand: PropTypes.string.isRequired,
   name: PropTypes.string.isRequired,
   price: PropTypes.string.isRequired,
   imgSrc: PropTypes.string.isRequired,

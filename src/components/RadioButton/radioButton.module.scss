@@ -19,7 +19,7 @@
 }
 
 .bigText {
-  width: 63px;
+  min-width: 63px;
   height: 45px;
   letter-spacing: 0.05em;
   font-size: 16px;
@@ -27,7 +27,7 @@
 }
 
 .smallText {
-  width: 24px;
+  min-width: 24px;
   height: 24px;
   font-size: 14px;
   line-height: 160%;

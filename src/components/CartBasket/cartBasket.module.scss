@@ -25,3 +25,16 @@
 .hidden {
   display: none;
 }
+
+.cartBasket {
+  width: fit-content;
+  position: relative;
+}
+
+.list {
+  position: absolute;
+  right: 0;
+  width: max-content;
+  z-index: 2;
+  top: 52px;
+}

@@ -1,5 +1,5 @@
 import React from 'react';
-// import PropTypes from 'prop-types';
+import PropTypes from 'prop-types';
 import styles from './tabs.module.scss';
 
 class Tabs extends React.Component {
@@ -21,25 +21,18 @@ class Tabs extends React.Component {
   // }
 
   render() {
-    // const { id, name, price, imgSrc, inStock, handleClickOnButton, handleClickOnProductCard } =
-    //   this.props;
+    const { categories } = this.props;
     return (
       <ul className={styles.list}>
-        <li className={styles.listItem}>
-          <button className={styles.button} type="button">
-            Women
-          </button>
-        </li>
-        <li className={styles.listItem}>
-          <button className={styles.button} type="button">
-            Men
-          </button>
-        </li>
-        <li className={styles.listItem}>
-          <button className={styles.button} type="button">
-            Kids
-          </button>
-        </li>
+        {categories.map((category) => {
+          return (
+            <li className={styles.listItem} key={category}>
+              <button className={styles.button} type="button">
+                {category}
+              </button>
+            </li>
+          );
+        })}
       </ul>
       // <a className={this.cardClasses} href="/" onClick={() => handleClickOnProductCard(id)}>
       //   <div className={styles.imageContainer}>
@@ -56,14 +49,9 @@ class Tabs extends React.Component {
   }
 }
 
-// Tabs.propTypes = {
-//   id: PropTypes.string.isRequired,
-//   name: PropTypes.string.isRequired,
-//   price: PropTypes.string.isRequired,
-//   imgSrc: PropTypes.string.isRequired,
-//   inStock: PropTypes.bool.isRequired,
-//   handleClickOnButton: PropTypes.func.isRequired,
-//   handleClickOnProductCard: PropTypes.func.isRequired
-// };
+Tabs.propTypes = {
+  // eslint-disable-next-line react/forbid-prop-types
+  categories: PropTypes.array.isRequired
+};
 
 export default Tabs;

@@ -1,54 +1,37 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import styles from './bagItem.module.scss';
+import ProductDescription from '../ProductDescription/ProductDescription';
+import Counter from '../Counter/Counter';
 
 class BagItem extends React.Component {
   render() {
-    // const { isButton, buttonType, disabled, text, type, href = '/', onClick } = this.props;
-
-    // const classesArr = [styles.button];
-
-    // if (type === 'bordered') classesArr.push(styles.bordered);
-    // if (type === 'solid') classesArr.push(styles.solid);
-
-    // const classes = classesArr.join(' ');
+    const { size, product } = this.props;
 
     return (
       <div className={styles.item}>
         <div className={styles.descriptionContainer}>
-          <div className={styles.description}>
-            <div className={styles.name}>Apollo Running Short</div>
-            <div className={styles.price}>$50.00</div>
-          </div>
-          <ul>
-            <li>
-              <p>Size</p>
-              <div>
-                <ul>
-                  <li>XS</li>
-                  <li>S</li>
-                  <li>M</li>
-                  <li>L</li>
-                </ul>
-              </div>
-            </li>
-          </ul>
-          <div className={styles.counter}></div>
+          <ProductDescription size={size} product={product} />
         </div>
-        <div className={styles.imageContainer}></div>
+        <div className={styles.counterContainer}>
+          <Counter maxAmount={10} />
+        </div>
+        <div className={styles.imageContainer}>
+          <img
+            className={styles.image}
+            src="https://cdn.shopify.com/s/files/1/0087/6193/3920/products/DD1381200_DEOA_2_720x.jpg?v=1612816087"
+            alt="Product"
+          />
+        </div>
       </div>
     );
   }
 }
 
 BagItem.propTypes = {
-  isButton: PropTypes.bool.isRequired,
-  buttonType: PropTypes.string.isRequired,
-  disabled: PropTypes.bool.isRequired,
-  text: PropTypes.string.isRequired,
-  type: PropTypes.bool.isRequired,
-  href: PropTypes.string.isRequired,
-  onClick: PropTypes.func.isRequired
+  size: PropTypes.string.isRequired,
+  // eslint-disable-next-line react/forbid-prop-types
+  product: PropTypes.object.isRequired
 };
 
 export default BagItem;

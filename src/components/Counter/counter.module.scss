@@ -1,0 +1,56 @@
+@import '../../style/variables.scss';
+
+.counter {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 24px;
+  height: 100%;
+}
+
+.button {
+  width: 24px;
+  height: 24px;
+  border: 1px solid $textColor;
+  &:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
+}
+
+.plus {
+  background: $textColor;
+  height: 8px;
+  width: 1px;
+  position: relative;
+  transform: translateX(-50%);
+  margin: 0 auto;
+  &::after {
+    content: '';
+    height: 1px;
+    width: 8px;
+    background: $textColor;
+    position: absolute;
+    left: 50%;
+    top: 4px;
+    transform: translateX(-50%);
+  }
+}
+
+.minus {
+  background: $textColor;
+  height: 1px;
+  width: 8px;
+  margin: 0 auto;
+}
+
+.input {
+  border: none;
+  text-align: center;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 160%;
+  color: $textColor;
+  font-family: $primaryFont;
+  background: none;
+}
