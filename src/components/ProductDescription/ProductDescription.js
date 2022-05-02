@@ -11,17 +11,6 @@ class ProductDescription extends React.Component {
   //   };
   // }
 
-  // increase = () => {
-  //   this.setState((prevState) => ({
-  //     amount: prevState.amount + 1
-  //   }));
-  // };
-
-  // decrease = () => {
-  //   this.setState((prevState) => ({
-  //     amount: prevState.amount - 1
-  //   }));
-  // };
   stylesBrand = () => {
     const { size } = this.props;
     return `${styles.brand} ${size === 'small' ? styles.brandSmall : styles.brandBig}`;
@@ -45,16 +34,12 @@ class ProductDescription extends React.Component {
   );
 
   render() {
-    // const { amount } = this.state;
-    const {
-      size,
-      product: { brand, name, prices, attributes }
-    } = this.props;
+    const { size, isPriceOnTop, brand, name, prices, attributes } = this.props;
     return (
       <div className={styles.container}>
         <p className={this.stylesBrand()}>{brand}</p>
         <p className={this.stylesName()}>{name}</p>
-        {size === 'small' && <p className={this.stylesPrice()}>${prices[0].amount}</p>}
+        {isPriceOnTop && <p className={this.stylesPrice()}>${prices[0].amount}</p>}
         <ul className={styles.attributes}>
           {attributes.map((item) => {
             return (
@@ -70,7 +55,7 @@ class ProductDescription extends React.Component {
             );
           })}
         </ul>
-        {size === 'big' && this.renderBigPrice()}
+        {!isPriceOnTop && this.renderBigPrice()}
       </div>
     );
   }
@@ -78,8 +63,13 @@ class ProductDescription extends React.Component {
 
 ProductDescription.propTypes = {
   size: PropTypes.oneOf(['big', 'small']).isRequired,
+  isPriceOnTop: PropTypes.bool,
+  brand: PropTypes.string.isRequired,
+  name: PropTypes.string.isRequired,
   // eslint-disable-next-line react/forbid-prop-types
-  product: PropTypes.object.isRequired
+  prices: PropTypes.array.isRequired,
+  // eslint-disable-next-line react/forbid-prop-types
+  attributes: PropTypes.array.isRequired
   // product: PropTypes.objectOf(
   //   PropTypes.shape({
   //     name: PropTypes.string.isRequired,
@@ -103,8 +93,8 @@ ProductDescription.propTypes = {
   // ).isRequired
 };
 
-// ProductDescription.defaultProps = {
-//   defAmount: 0
-// };
+ProductDescription.defaultProps = {
+  isPriceOnTop: false
+};
 
 export default ProductDescription;

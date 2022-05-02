@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { Link } from 'react-router-dom';
 import styles from './card.module.scss';
 import basket from './images/empty-cart.svg';
 
@@ -33,7 +34,7 @@ class Card extends React.Component {
       handleClickOnProductCard
     } = this.props;
     return (
-      <a className={this.cardClasses} href="/" onClick={() => handleClickOnProductCard(id)}>
+      <Link className={this.cardClasses} to="/product" onClick={() => handleClickOnProductCard(id)}>
         <div className={styles.imageContainer}>
           <img className={this.imageClasses} src={imgSrc} alt="Product" />
           {!inStock && <span className={styles.helpText}>Out of stock</span>}
@@ -45,7 +46,7 @@ class Card extends React.Component {
           {brand} <span className={inStock ? styles.name : styles.disabledName}>{name}</span>
         </p>
         <p className={inStock ? styles.price : styles.disabledPrice}>{price}</p>
-      </a>
+      </Link>
     );
   }
 }
@@ -54,7 +55,7 @@ Card.propTypes = {
   id: PropTypes.string.isRequired,
   brand: PropTypes.string.isRequired,
   name: PropTypes.string.isRequired,
-  price: PropTypes.string.isRequired,
+  price: PropTypes.number.isRequired,
   imgSrc: PropTypes.string.isRequired,
   inStock: PropTypes.bool.isRequired,
   handleClickOnButton: PropTypes.func.isRequired,

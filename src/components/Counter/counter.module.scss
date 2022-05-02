@@ -4,18 +4,33 @@
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  width: 24px;
   height: 100%;
 }
 
+.smallCounter {
+  max-width: 24px;
+}
+.bigCounter {
+  max-width: 45px;
+  margin-right: 24px;
+}
+
 .button {
-  width: 24px;
-  height: 24px;
   border: 1px solid $textColor;
   &:disabled {
     opacity: 0.5;
     cursor: not-allowed;
   }
+}
+
+.smallButton {
+  width: 24px;
+  height: 24px;
+}
+
+.bigButton {
+  width: 45px;
+  height: 45px;
 }
 
 .plus {
@@ -48,9 +63,16 @@
   border: none;
   text-align: center;
   font-weight: 500;
-  font-size: 16px;
   line-height: 160%;
   color: $textColor;
   font-family: $primaryFont;
   background: none;
+}
+
+.smallInput {
+  font-size: 16px;
+}
+
+.bigInput {
+  font-size: 24px;
 }

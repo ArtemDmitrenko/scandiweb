@@ -1,0 +1,49 @@
+@import '../../style/variables.scss';
+
+.item {
+  display: flex;
+}
+
+.product {
+  padding-top: 24px;
+  padding-bottom: 24px;
+  border-bottom: 1px solid #e5e5e5;
+}
+
+.title {
+  font-weight: 700;
+  font-size: 32px;
+  line-height: 40px;
+  font-family: $primaryFont;
+  color: $textColor;
+  text-transform: uppercase;
+  border-bottom: 1px solid #e5e5e5;
+  padding-bottom: 55px;
+}
+
+.tax,
+.quantity,
+.total {
+  font-weight: 400;
+  font-size: 24px;
+  line-height: 28px;
+  font-family: $primaryFont;
+  color: $textColor;
+  & .value {
+    font-weight: 700;
+  }
+}
+
+.tax {
+  margin-top: 32px;
+  margin-bottom: 8px;
+}
+
+.total {
+  margin-top: 24px;
+  margin-bottom: 16px;
+}
+
+.button {
+  max-width: 280px;
+}

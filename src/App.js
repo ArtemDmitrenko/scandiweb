@@ -1,4 +1,5 @@
 import React from 'react';
+// import ThumbSlider from './components/ThumbSlider/ThumbSlider';
 // import Card from './components/Card/Card';
 // import CartBasket from './components/CartBasket/CartBasket';
 import ProductsListPage from './pages/ProductsListPage/ProductsListPage';
@@ -52,6 +53,8 @@ class App extends React.Component {
         {/* <CartBasket amount={3} products={products} /> */}
         {/* <Header categories={categories} currencies={currencies} products={products} /> */}
         <ProductsListPage />
+
+        {/* <ThumbSlider images={ImgScr} /> */}
       </>
       // <div className="App">
       //   <header className="App-header">Learn React</header>

@@ -14,13 +14,11 @@ class Bag extends React.Component {
           My Bag, <span className={styles.amountOfItems}>3 items</span>
         </p>
         <ul className={styles.listOfProducts}>
-          {products.map((product) => {
-            return (
-              <li className={styles.product} key={product.name}>
-                <BagItem size={size} product={product} />
-              </li>
-            );
-          })}
+          {products.map((product) => (
+            <li className={styles.product} key={product.name}>
+              <BagItem size={size} product={product} />
+            </li>
+          ))}
         </ul>
         <div className={styles.sum}>
           <p className={styles.totalText}>Total</p>

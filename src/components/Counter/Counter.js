@@ -10,6 +10,21 @@ class Counter extends React.Component {
     };
   }
 
+  stylesButton = () => {
+    const { size } = this.props;
+    return `${styles.button} ${size === 'small' ? styles.smallButton : styles.bigButton}`;
+  };
+
+  stylesInput = () => {
+    const { size } = this.props;
+    return `${styles.input} ${size === 'small' ? styles.smallInput : styles.bigInput}`;
+  };
+
+  stylesCounter = () => {
+    const { size } = this.props;
+    return `${styles.counter} ${size === 'small' ? styles.smallCounter : styles.bigCounter}`;
+  };
+
   increase = () => {
     this.setState((prevState) => ({
       amount: prevState.amount + 1
@@ -26,19 +41,19 @@ class Counter extends React.Component {
     const { amount } = this.state;
     const { maxAmount } = this.props;
     return (
-      <div className={styles.counter}>
+      <div className={this.stylesCounter()}>
         <button
           type="button"
-          className={styles.button}
+          className={this.stylesButton()}
           onClick={this.increase}
           disabled={amount === maxAmount}>
           <div className={styles.plus} />
         </button>
-        <input disabled name="amount" className={styles.input} value={amount} />
+        <input disabled name="amount" className={this.stylesInput()} value={amount} />
         <button
           disabled={amount === 0}
           type="button"
-          className={styles.button}
+          className={this.stylesButton()}
           onClick={this.decrease}>
           <div className={styles.minus} />
         </button>
@@ -48,6 +63,7 @@ class Counter extends React.Component {
 }
 
 Counter.propTypes = {
+  size: PropTypes.oneOf(['small', 'big']).isRequired,
   defAmount: PropTypes.number,
   maxAmount: PropTypes.number.isRequired
 };

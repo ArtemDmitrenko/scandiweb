@@ -7,9 +7,9 @@
 .listItem {
   padding: 0 16px 32px;
   border-bottom: 2px solid transparent;
-  &:focus-within {
-    border-bottom: 2px solid $primaryColor;
-  }
+  // &:focus-within {
+  //   border-bottom: 2px solid $primaryColor;
+  // }
 }
 
 .button {
@@ -19,14 +19,16 @@
   line-height: 120%;
   color: $textColor;
   text-transform: uppercase;
-  &:focus {
+  // &:focus {
+  //   font-weight: 600;
+  //   color: $primaryColor;
+  // }
+}
+
+.active {
+  border-bottom: 2px solid $primaryColor;
+  & .button {
     font-weight: 600;
     color: $primaryColor;
   }
 }
-
-// .active {
-//   font-weight: 600;
-//   color: $primaryColor;
-//   border-bottom: 2px solid $primaryFont;
-// }
