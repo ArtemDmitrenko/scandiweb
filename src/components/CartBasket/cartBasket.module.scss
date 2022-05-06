@@ -34,7 +34,21 @@
 .list {
   position: absolute;
   right: 0;
+  min-width: 340px;
+  z-index: 2;
+  top: 52px;
+}
+
+.emptyList {
+  position: absolute;
+  right: 0;
   width: max-content;
   z-index: 2;
   top: 52px;
+  background-color: white;
+  padding: 20px;
+  font-weight: 700;
+  font-size: 14px;
+  line-height: 16px;
+  font-family: $primaryFont;
 }

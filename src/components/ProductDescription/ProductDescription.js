@@ -1,14 +1,18 @@
+/* eslint-disable react/require-default-props */
 import React from 'react';
 import PropTypes from 'prop-types';
+// import { connect } from 'react-redux';
+
 import Attribute from '../Attribute/Attribute';
+import setPriceInCurrency from '../../utils/setPriceInCurrency';
 import styles from './productDescription.module.scss';
 
 class ProductDescription extends React.Component {
   // constructor(props) {
   //   super(props);
-  //   this.state = {
-  //     amount: props.defAmount
-  //   };
+  //   // this.state = {
+  //   //   amount: props.defAmount
+  //   // };
   // }
 
   stylesBrand = () => {
@@ -26,30 +30,69 @@ class ProductDescription extends React.Component {
     return `${styles.price} ${size === 'small' ? styles.priceSmall : styles.priceBig}`;
   };
 
-  renderBigPrice = () => (
-    <>
-      <p className={styles.titlePrice}>Price:</p>
-      <p className={this.stylesPrice()}>$50.00</p>
-    </>
-  );
+  renderBigPrice = () => {
+    // eslint-disable-next-line react/prop-types
+    const { currency, prices } = this.props;
+    const currentPrice =
+      prices.length === 0 || currency === '' ? '' : setPriceInCurrency(prices, currency);
+
+    // return priceArr.find((item) => item.currency.symbol === currency).amount;
+
+    return (
+      <>
+        <p className={styles.titlePrice}>Price:</p>
+        <p className={this.stylesPrice()}>
+          {currency}
+          {currentPrice}
+        </p>
+      </>
+    );
+  };
+
+  // renderPrice = (priceArr) => {
+  //   // eslint-disable-next-line react/prop-types
+  //   const { currency } = this.props;
+  //   console.log(priceArr);
+  //   return priceArr.find((item) => item.currency.symbol === currency).amount;
+  // };
 
   render() {
-    const { size, isPriceOnTop, brand, name, prices, attributes } = this.props;
+    // eslint-disable-next-line react/prop-types
+    const {
+      size,
+      isPriceOnTop,
+      nameForRadioButtons,
+      brand,
+      name,
+      prices,
+      attributes,
+      currency,
+      handleAttributeChange
+    } = this.props;
+    console.log(attributes);
     return (
       <div className={styles.container}>
         <p className={this.stylesBrand()}>{brand}</p>
         <p className={this.stylesName()}>{name}</p>
-        {isPriceOnTop && <p className={this.stylesPrice()}>${prices[0].amount}</p>}
+        {isPriceOnTop && (
+          <p className={this.stylesPrice()}>
+            {currency}
+            {setPriceInCurrency(prices, currency)}
+            {/* {this.renderPrice(prices)} */}
+          </p>
+        )}
         <ul className={styles.attributes}>
           {attributes.map((item) => {
             return (
               <li key={item.name}>
                 <Attribute
+                  nameForRadioButtons={nameForRadioButtons}
                   type={item.type}
                   size={size}
                   name={item.name}
                   title={item.name}
                   items={item.items}
+                  handleAttributeChange={handleAttributeChange}
                 />
               </li>
             );
@@ -62,6 +105,7 @@ class ProductDescription extends React.Component {
 }
 
 ProductDescription.propTypes = {
+  nameForRadioButtons: PropTypes.string.isRequired,
   size: PropTypes.oneOf(['big', 'small']).isRequired,
   isPriceOnTop: PropTypes.bool,
   brand: PropTypes.string.isRequired,
@@ -69,32 +113,23 @@ ProductDescription.propTypes = {
   // eslint-disable-next-line react/forbid-prop-types
   prices: PropTypes.array.isRequired,
   // eslint-disable-next-line react/forbid-prop-types
-  attributes: PropTypes.array.isRequired
-  // product: PropTypes.objectOf(
-  //   PropTypes.shape({
-  //     name: PropTypes.string.isRequired,
-  //     brand: PropTypes.string.isRequired,
-  //     // eslint-disable-next-line react/forbid-prop-types
-  //     prices: PropTypes.array.isRequired,
-  //     attributes: PropTypes.arrayOf(
-  //       PropTypes.shape({
-  //         name: PropTypes.string.isRequired,
-  //         type: PropTypes.string.isRequired,
-  //         items: PropTypes.arrayOf(
-  //           PropTypes.shape({
-  //             id: PropTypes.string.isRequired,
-  //             displayValue: PropTypes.string.isRequired,
-  //             value: PropTypes.string.isRequired
-  //           })
-  //         ).isRequired
-  //       })
-  //     ).isRequired
-  //   })
-  // ).isRequired
+  attributes: PropTypes.array.isRequired,
+  // eslint-disable-next-line react/require-default-props
+  handleAttributeChange: PropTypes.func,
+  // eslint-disable-next-line react/require-default-props
+  currency: PropTypes.string.isRequired
 };
 
 ProductDescription.defaultProps = {
   isPriceOnTop: false
 };
+
+// const mapStateToProps = (store) => {
+//   return {
+//     currency: store.currencyReducer.currency
+//   };
+// };
+
+// export default connect(mapStateToProps)(ProductDescription);
 
 export default ProductDescription;

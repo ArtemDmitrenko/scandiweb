@@ -6,27 +6,44 @@ import Counter from '../Counter/Counter';
 import Slider from '../Slider/Slider';
 
 class BagItem extends React.Component {
+  // eslint-disable-next-line class-methods-use-this
+  handleAmountChange = (action) => {
+    const { handleAmountChange, product } = this.props;
+    handleAmountChange(product, action);
+  };
+
   render() {
+    // eslint-disable-next-line react/destructuring-assignment
     const {
       size,
-      product: { brand, name, prices, attributes, gallery }
+      product: { id, brand, name, prices, attributes, gallery, value },
+      currency,
+      componentLocation,
+      handleAttributeChange
     } = this.props;
-
     return (
       <div className={styles.item}>
         <div className={styles.descriptionContainer}>
           <ProductDescription
+            nameForRadioButtons={id + componentLocation}
             size={size}
             isPriceOnTop
             brand={brand}
             name={name}
             prices={prices}
             attributes={attributes}
+            currency={currency}
+            handleAttributeChange={handleAttributeChange}
           />
         </div>
         <div className={styles.counterImage}>
           <div className={styles.counterContainer}>
-            <Counter maxAmount={10} size={size} />
+            <Counter
+              maxAmount={10}
+              size={size}
+              defAmount={value}
+              handleAmountChange={this.handleAmountChange}
+            />
           </div>
           {size === 'small' ? (
             <div className={styles.imageContainer}>
@@ -45,8 +62,12 @@ class BagItem extends React.Component {
 
 BagItem.propTypes = {
   size: PropTypes.string.isRequired,
+  componentLocation: PropTypes.string.isRequired,
   // eslint-disable-next-line react/forbid-prop-types
-  product: PropTypes.object.isRequired
+  product: PropTypes.object.isRequired,
+  handleAmountChange: PropTypes.func.isRequired,
+  currency: PropTypes.string.isRequired,
+  handleAttributeChange: PropTypes.func.isRequired
 };
 
 export default BagItem;

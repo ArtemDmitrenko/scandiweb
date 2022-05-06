@@ -1,18 +1,75 @@
+/* eslint-disable class-methods-use-this */
+/* eslint-disable consistent-return */
+/* eslint-disable react/prop-types */
+/* eslint-disable react/jsx-props-no-spreading */
+/* eslint-disable react/display-name */
+/* eslint-disable react/function-component-definition */
 /* eslint-disable react/destructuring-assignment */
 import React from 'react';
 import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
+import axios from 'axios';
+import setPriceInCurrency from '../../utils/setPriceInCurrency';
+import { ADD_PRODUCT } from '../../redux/cartProducts/cartProductsActions';
+
 import Card from '../Card/Card';
 import styles from './productsList.module.scss';
 
 class ProductsList extends React.Component {
+  handleClickOnButton = async (id, e) => {
+    e.preventDefault();
+    const product = await this.fetchProduct(id);
+    const productWithSetAttributes = this.setDefaultAttributes(product);
+    const { dispatch } = this.props;
+    dispatch({
+      type: ADD_PRODUCT,
+      payload: productWithSetAttributes
+    });
+  };
+
+  setDefaultAttributes = (product) => {
+    product.attributes.forEach((attribute) => {
+      // eslint-disable-next-line no-param-reassign
+      attribute.items[0].isChecked = true;
+    });
+    return product;
+  };
+
+  fetchProduct = async (id) => {
+    try {
+      const { data } = await axios({
+        url: 'http://localhost:4000/graphql',
+        method: 'post',
+        data: {
+          query: `
+          query Product($id: String!) {
+            product(id: $id) {
+              id, name, gallery, description, attributes {id, name, type, items {id, displayValue, value}}, prices {amount, currency {symbol}}, brand
+            }
+          }          
+        `,
+          variables: {
+            id
+          }
+        }
+      });
+      return data.data.product;
+    } catch (err) {
+      console.log(err.message);
+    }
+  };
+
   render() {
-    const { products } = this.props.products;
+    const {
+      products: { products },
+      currency
+    } = this.props;
     return (
       <div className={styles.container}>
-        <h1 className={styles.title}>{this.props.products.name}</h1>
+        {products && <h1 className={styles.title}>{this.props.products.name}</h1>}
         <ul className={styles.products}>
           {products &&
-            this.props.products.products.map(({ id, brand, name, prices, inStock, gallery }) => {
+            products.map(({ id, brand, name, prices, inStock, gallery }) => {
               return (
                 <li className={styles.product} key={id}>
                   <Card
@@ -21,9 +78,9 @@ class ProductsList extends React.Component {
                     inStock={inStock}
                     imgSrc={gallery[0]}
                     name={name}
-                    price={prices[0].amount}
-                    handleClickOnButton={(idNumber) => console.log(idNumber)}
-                    handleClickOnProductCard={(idNumber) => console.log(idNumber)}
+                    price={setPriceInCurrency(prices, currency)}
+                    currency={currency}
+                    handleClickOnButton={(e) => this.handleClickOnButton(id, e)}
                   />
                 </li>
               );
@@ -43,4 +100,17 @@ ProductsList.propTypes = {
 //   defAmount: 0
 // };
 
-export default ProductsList;
+const mapStateToProps = (store) => {
+  return {
+    currency: store.currencyReducer.currency
+    // productsInBag: store.cartProductsReducer.products
+  };
+};
+
+export default connect(mapStateToProps)(ProductsList);
+
+// export default ProductsList;
+
+// export default withParams(ProductsList);
+
+// export default ProductsList;

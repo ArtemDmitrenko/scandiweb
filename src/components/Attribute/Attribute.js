@@ -6,25 +6,32 @@ import RadioButton from '../RadioButton/RadioButton';
 import styles from './attribute.module.scss';
 
 class Attribute extends React.Component {
+  // eslint-disable-next-line class-methods-use-this
+
   render() {
-    const { type, size, title, name, items } = this.props;
+    const { type, size, nameForRadioButtons, title, name, items, handleAttributeChange } =
+      this.props;
 
     return (
       <div className={styles.container}>
         <p className={size === 'big' ? styles.nameBig : styles.nameSmall}>{title}:</p>
         <ul className={styles.allAttributes}>
-          {items.map((item, index) => {
+          {items.map((item) => {
+            console.log(item.isChecked);
+
             const { id, displayValue, value } = item;
             return (
               <li key={id} className={`${size === 'big' ? styles.itemBig : styles.itemSmall}`}>
                 <RadioButton
+                  nameForRadioButtons={nameForRadioButtons}
                   type={type}
                   size={size}
                   name={name}
                   value={displayValue}
                   content={value}
-                  isDefaultChecked={index === 0}
+                  isDefaultChecked={item.isChecked}
                   color={value}
+                  onChange={handleAttributeChange}
                 />
               </li>
             );
@@ -36,10 +43,13 @@ class Attribute extends React.Component {
 }
 
 Attribute.propTypes = {
+  nameForRadioButtons: PropTypes.string.isRequired,
   type: PropTypes.string.isRequired,
   size: PropTypes.string.isRequired,
   title: PropTypes.string.isRequired,
   name: PropTypes.string.isRequired,
+  // eslint-disable-next-line react/require-default-props
+  handleAttributeChange: PropTypes.func,
   items: PropTypes.arrayOf(
     PropTypes.shape({
       id: PropTypes.string.isRequired,

@@ -1,5 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { Link } from 'react-router-dom';
+
 import styles from './button.module.scss';
 
 class Button extends React.Component {
@@ -25,14 +27,14 @@ class Button extends React.Component {
         {text}
       </button>
     ) : (
-      <a
-        href={href}
+      <Link
+        to={href}
         type={buttonType === 'submit' ? 'submit' : 'button'}
         disabled={disabled}
         onClick={onClick}
         className={classes}>
         {text}
-      </a>
+      </Link>
     );
   }
 }

@@ -9,23 +9,24 @@ import styles from './header.module.scss';
 
 class Header extends React.Component {
   render() {
-    const { categories, currencies, products, handleClickTab } = this.props;
+    const { categories, currencies, activeCurrency, activeCategory, handleClickTab } = this.props;
 
     return (
       <header className={styles.container}>
         <div className={styles.nav}>
-          <Tabs categories={categories} handleClickTab={handleClickTab} />
+          <Tabs
+            categories={categories}
+            handleClickTab={handleClickTab}
+            activeCategory={activeCategory}
+          />
         </div>
         <Logo width={41} height={41} alt="Logo" />
         <div className={styles.basketCurrencyContainer}>
           <div className={styles.current}>
-            <CurrentChanger
-              currencies={currencies}
-              handleChangeCurrency={(symbol) => console.log(symbol)}
-            />
+            <CurrentChanger currencies={currencies} activeCurrency={activeCurrency} />
           </div>
           <div className={styles.basket}>
-            <CartBasket amount={3} products={products} />
+            <CartBasket />
           </div>
         </div>
       </header>
@@ -38,9 +39,11 @@ Header.propTypes = {
   categories: PropTypes.array.isRequired,
   // eslint-disable-next-line react/forbid-prop-types
   currencies: PropTypes.array.isRequired,
+  activeCurrency: PropTypes.string.isRequired,
   // eslint-disable-next-line react/forbid-prop-types
-  products: PropTypes.array.isRequired,
-  handleClickTab: PropTypes.func.isRequired
+  // products: PropTypes.array.isRequired,
+  handleClickTab: PropTypes.func.isRequired,
+  activeCategory: PropTypes.string.isRequired
 };
 
 // Header.defaultProps = {

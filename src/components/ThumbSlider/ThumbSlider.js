@@ -1,3 +1,4 @@
+/* eslint-disable react/destructuring-assignment */
 /* eslint-disable jsx-a11y/no-noninteractive-element-interactions */
 /* eslint-disable jsx-a11y/click-events-have-key-events */
 import React from 'react';
@@ -8,7 +9,7 @@ class ThumbSlider extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      activeImgSrc: props.images[0]
+      activeImgSrc: this.props.images[0]
     };
   }
 
@@ -29,14 +30,14 @@ class ThumbSlider extends React.Component {
               key={imgSrc}
               className={styles.thumbImageContainer}
               onClick={() => this.handleClickOnImage(imgSrc)}>
-              <button type="button">
+              <button type="button" className={styles.button}>
                 <img className={styles.image} src={imgSrc} alt="Product" />
               </button>
             </li>
           ))}
         </ul>
         <div className={styles.mainImageContainer}>
-          <img className={styles.image} src={activeImgSrc} alt="Product" />
+          <img className={styles.mainImage} src={activeImgSrc} alt="Product" />
         </div>
       </div>
     );

@@ -1,15 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+
 import styles from './counter.module.scss';
 
 class Counter extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      amount: props.defAmount
-    };
-  }
-
   stylesButton = () => {
     const { size } = this.props;
     return `${styles.button} ${size === 'small' ? styles.smallButton : styles.bigButton}`;
@@ -25,36 +19,35 @@ class Counter extends React.Component {
     return `${styles.counter} ${size === 'small' ? styles.smallCounter : styles.bigCounter}`;
   };
 
-  increase = () => {
-    this.setState((prevState) => ({
-      amount: prevState.amount + 1
-    }));
+  increase = (e) => {
+    const { handleAmountChange } = this.props;
+    handleAmountChange('increase', e);
+    e.stopPropagation();
   };
 
-  decrease = () => {
-    this.setState((prevState) => ({
-      amount: prevState.amount - 1
-    }));
+  decrease = (e) => {
+    const { handleAmountChange } = this.props;
+    handleAmountChange('decrease', e);
+    e.stopPropagation();
   };
 
   render() {
-    const { amount } = this.state;
-    const { maxAmount } = this.props;
+    const { maxAmount, defAmount } = this.props;
     return (
       <div className={this.stylesCounter()}>
         <button
           type="button"
           className={this.stylesButton()}
-          onClick={this.increase}
-          disabled={amount === maxAmount}>
+          onClick={(e) => this.increase(e)}
+          disabled={defAmount === maxAmount}>
           <div className={styles.plus} />
         </button>
-        <input disabled name="amount" className={this.stylesInput()} value={amount} />
+        <input disabled name="amount" className={this.stylesInput()} value={defAmount} />
         <button
-          disabled={amount === 0}
+          disabled={defAmount === 0}
           type="button"
           className={this.stylesButton()}
-          onClick={this.decrease}>
+          onClick={(e) => this.decrease(e)}>
           <div className={styles.minus} />
         </button>
       </div>
@@ -65,7 +58,8 @@ class Counter extends React.Component {
 Counter.propTypes = {
   size: PropTypes.oneOf(['small', 'big']).isRequired,
   defAmount: PropTypes.number,
-  maxAmount: PropTypes.number.isRequired
+  maxAmount: PropTypes.number.isRequired,
+  handleAmountChange: PropTypes.func.isRequired
 };
 
 Counter.defaultProps = {

@@ -8,6 +8,7 @@ export class OverlayProvider extends React.Component {
     this.state = {
       overlayProducts: false
     };
+    console.log('neeeeew context!!!!!');
   }
 
   setOverlay = () => {
@@ -18,6 +19,8 @@ export class OverlayProvider extends React.Component {
 
   render() {
     const { overlayProducts } = this.state;
+    console.log('context rendering...', overlayProducts);
+
     const { setOverlay } = this;
     // eslint-disable-next-line react/prop-types
     const { children } = this.props;

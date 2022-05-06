@@ -1,15 +1,16 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
+
 import styles from './currentChanger.module.scss';
 
 class CurrentChanger extends React.Component {
   constructor(props) {
     super(props);
-    const { currencies } = this.props;
     this.state = {
-      isOpened: false,
-      currentCurrency: currencies[0].symbol
+      isOpened: false
     };
+    // eslint-disable-next-line react/destructuring-assignment
     this.currencyMenuRef = React.createRef();
   }
 
@@ -36,12 +37,16 @@ class CurrentChanger extends React.Component {
     }
   };
 
-  handleClickOnCurrency = (symbol, callback) => {
+  handleClickOnCurrency = (symbol) => {
+    // eslint-disable-next-line react/prop-types
+    const { dispatch } = this.props;
+    dispatch({
+      type: 'CHANGE_CURRENCY',
+      payload: symbol
+    });
     this.setState((prevState) => ({
-      isOpened: !prevState.isOpened,
-      currentCurrency: symbol
+      isOpened: !prevState.isOpened
     }));
-    callback(symbol);
   };
 
   stylesCheckMark = () => {
@@ -50,12 +55,12 @@ class CurrentChanger extends React.Component {
   };
 
   render() {
-    const { isOpened, currentCurrency } = this.state;
-    const { currencies, handleChangeCurrency } = this.props;
+    const { isOpened } = this.state;
+    const { currencies, activeCurrency } = this.props;
     return (
       <div ref={this.currencyMenuRef} className={styles.container}>
         <button className={styles.button} type="button" onClick={this.handleClickOnMenu}>
-          <p className={styles.buttonText}>{currentCurrency}</p>
+          <p className={styles.buttonText}>{activeCurrency}</p>
           <div className={this.stylesCheckMark()} />
         </button>
         <ul className={isOpened ? styles.list : styles.hidden}>
@@ -65,7 +70,7 @@ class CurrentChanger extends React.Component {
               <li className={styles.item} key={symbol}>
                 <button
                   className={styles.buttonSelect}
-                  onClick={this.handleClickOnCurrency.bind(this, symbol, handleChangeCurrency)}
+                  onClick={this.handleClickOnCurrency.bind(this, symbol)}
                   type="button">
                   {symbol} {label}
                 </button>
@@ -85,7 +90,15 @@ CurrentChanger.propTypes = {
       label: PropTypes.string.isRequired
     })
   ).isRequired,
-  handleChangeCurrency: PropTypes.func.isRequired
+  activeCurrency: PropTypes.string.isRequired
 };
 
-export default CurrentChanger;
+const mapStateToProps = (store) => {
+  return {
+    currency: store.currencyReducer.currency
+  };
+};
+
+export default connect(mapStateToProps)(CurrentChanger);
+
+// export default CurrentChanger;
