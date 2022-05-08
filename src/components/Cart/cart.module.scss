@@ -11,24 +11,25 @@
 }
 
 .title {
+  padding-bottom: 55px;
+  color: $textColor;
   font-weight: 700;
   font-size: 32px;
-  line-height: 40px;
   font-family: $primaryFont;
-  color: $textColor;
+  line-height: 40px;
   text-transform: uppercase;
   border-bottom: 1px solid #e5e5e5;
-  padding-bottom: 55px;
 }
 
 .tax,
 .quantity,
 .total {
+  color: $textColor;
   font-weight: 400;
   font-size: 24px;
-  line-height: 28px;
   font-family: $primaryFont;
-  color: $textColor;
+  line-height: 28px;
+
   & .value {
     font-weight: 700;
   }
@@ -49,10 +50,10 @@
 }
 
 .emptyBag {
+  margin-top: 20px;
+  color: $textColor;
   font-weight: 400;
   font-size: 24px;
-  line-height: 28px;
   font-family: $primaryFont;
-  color: $textColor;
-  margin-top: 20px;
+  line-height: 28px;
 }

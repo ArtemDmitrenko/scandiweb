@@ -5,24 +5,21 @@ import { Link } from 'react-router-dom';
 import styles from './button.module.scss';
 
 class Button extends React.Component {
-  render() {
-    const { isButton, buttonType, disabled, text, type, href = '/', onClick } = this.props;
-
+  setButtonStyles = () => {
+    const { type } = this.props;
     const classesArr = [styles.button];
-
     if (type === 'bordered') classesArr.push(styles.bordered);
     if (type === 'solid') classesArr.push(styles.solid);
-    // if (type === 'directed') classesArr.push(styles.directed);
-    // if (size === 'big') classesArr.push(styles.big);
-    // if (size === 'small') classesArr.push(styles.small);
+    return classesArr.join(' ');
+  };
 
-    const classes = classesArr.join(' ');
-
+  render() {
+    const { isButton, buttonType, disabled, text, href = '/', onClick } = this.props;
     return isButton ? (
       <button
         type={buttonType === 'submit' ? 'submit' : 'button'}
         disabled={disabled}
-        className={classes}
+        className={this.setButtonStyles()}
         onClick={onClick}>
         {text}
       </button>
@@ -32,7 +29,7 @@ class Button extends React.Component {
         type={buttonType === 'submit' ? 'submit' : 'button'}
         disabled={disabled}
         onClick={onClick}
-        className={classes}>
+        className={this.setButtonStyles()}>
         {text}
       </Link>
     );

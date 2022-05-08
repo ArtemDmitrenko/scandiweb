@@ -1,4 +1,3 @@
-/* eslint-disable jsx-a11y/label-has-associated-control */
 import React from 'react';
 import PropTypes from 'prop-types';
 
@@ -7,8 +6,6 @@ import RadioButton from 'components/RadioButton/RadioButton';
 import styles from './attribute.module.scss';
 
 class Attribute extends React.Component {
-  // eslint-disable-next-line class-methods-use-this
-
   render() {
     const { type, size, nameForRadioButtons, title, name, items, handleAttributeChange } =
       this.props;
@@ -18,8 +15,6 @@ class Attribute extends React.Component {
         <p className={size === 'big' ? styles.nameBig : styles.nameSmall}>{title}:</p>
         <ul className={styles.allAttributes}>
           {items.map((item) => {
-            console.log(item.isChecked);
-
             const { id, displayValue, value } = item;
             return (
               <li key={id} className={`${size === 'big' ? styles.itemBig : styles.itemSmall}`}>
@@ -49,8 +44,7 @@ Attribute.propTypes = {
   size: PropTypes.string.isRequired,
   title: PropTypes.string.isRequired,
   name: PropTypes.string.isRequired,
-  // eslint-disable-next-line react/require-default-props
-  handleAttributeChange: PropTypes.func,
+  handleAttributeChange: PropTypes.func.isRequired,
   items: PropTypes.arrayOf(
     PropTypes.shape({
       id: PropTypes.string.isRequired,

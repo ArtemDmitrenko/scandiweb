@@ -1,5 +1,4 @@
 /* eslint-disable import/no-unresolved */
-/* eslint-disable jsx-a11y/label-has-associated-control */
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Navigation } from 'swiper';
@@ -14,11 +13,7 @@ class Slider extends React.Component {
     const { images } = this.props;
     return (
       <div className="slider-container">
-        <Swiper
-          navigation
-          modules={[Navigation]}
-          onSlideChange={() => console.log('slide change')}
-          onSwiper={(swiper) => console.log(swiper)}>
+        <Swiper navigation modules={[Navigation]}>
           {images.map((img) => (
             <SwiperSlide key={img}>
               <img className="slider-container__image" src={img} alt="Product" />
@@ -31,8 +26,7 @@ class Slider extends React.Component {
 }
 
 Slider.propTypes = {
-  // eslint-disable-next-line react/forbid-prop-types
-  images: PropTypes.array.isRequired
+  images: PropTypes.instanceOf(Array).isRequired
 };
 
 export default Slider;

@@ -7,28 +7,22 @@
 .listItem {
   padding: 0 16px 32px;
   border-bottom: 2px solid transparent;
-  // &:focus-within {
-  //   border-bottom: 2px solid $primaryColor;
-  // }
 }
 
 .button {
-  font-family: $primaryFont;
+  color: $textColor;
   font-weight: 400;
   font-size: 16px;
+  font-family: $primaryFont;
   line-height: 120%;
-  color: $textColor;
   text-transform: uppercase;
-  // &:focus {
-  //   font-weight: 600;
-  //   color: $primaryColor;
-  // }
 }
 
 .active {
   border-bottom: 2px solid $primaryColor;
+
   & .button {
-    font-weight: 600;
     color: $primaryColor;
+    font-weight: 600;
   }
 }

@@ -1,4 +1,5 @@
 import React from 'react';
+
 import styles from './loadingSpinner.module.scss';
 
 class LoadingSpinner extends React.Component {

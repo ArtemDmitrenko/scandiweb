@@ -1,4 +1,3 @@
-/* eslint-disable jsx-a11y/label-has-associated-control */
 import React from 'react';
 import PropTypes from 'prop-types';
 
@@ -27,6 +26,7 @@ class RadioButton extends React.Component {
     const { type, name, value, content, nameForRadioButtons, isDefaultChecked, onChange } =
       this.props;
     return (
+      // eslint-disable-next-line jsx-a11y/label-has-associated-control
       <label className={styles.radioButton}>
         <input
           className={styles.input}
@@ -34,7 +34,6 @@ class RadioButton extends React.Component {
           name={nameForRadioButtons + name}
           value={value}
           checked={isDefaultChecked}
-          // eslint-disable-next-line no-shadow
           onChange={() => onChange(name, value)}
         />
         <div className={this.stylesOfContent()} style={this.inlineStyle()}>
@@ -53,13 +52,12 @@ RadioButton.propTypes = {
   value: PropTypes.string.isRequired,
   content: PropTypes.string.isRequired,
   isDefaultChecked: PropTypes.bool,
-  onChange: PropTypes.func,
+  onChange: PropTypes.func.isRequired,
   color: PropTypes.string
 };
 
 RadioButton.defaultProps = {
   isDefaultChecked: false,
-  onChange: (name, value) => console.log(name, value),
   color: '#44FF03'
 };
 

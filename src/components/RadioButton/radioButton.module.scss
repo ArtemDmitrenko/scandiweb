@@ -9,21 +9,21 @@
 }
 
 .contentText {
-  border: 1px solid $textColor;
-  font-weight: 400;
-  color: $textColor;
-  padding-left: 1px;
   padding-right: 1px;
+  padding-left: 1px;
+  color: $textColor;
+  font-weight: 400;
   font-family: 'Source Sans Pro', sans-serif;
   text-align: center;
+  border: 1px solid $textColor;
 }
 
 .bigText {
   min-width: 63px;
   height: 45px;
-  letter-spacing: 0.05em;
   font-size: 16px;
   line-height: 45px;
+  letter-spacing: 0.05em;
 }
 
 .smallText {
@@ -34,16 +34,16 @@
 }
 
 .bigColor {
+  position: relative;
   width: 32px;
   height: 32px;
-  position: relative;
   border: 1px solid #dce0e7;
 }
 
 .smallColor {
+  position: relative;
   width: 16px;
   height: 16px;
-  position: relative;
   border: 1px solid #dce0e7;
 }
 
@@ -61,29 +61,29 @@
 }
 
 .input:checked + .bigColor {
-  &:before {
-    content: '';
+  &::before {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    box-sizing: border-box;
     width: 36px;
     height: 36px;
     border: 1px solid #5ece7b;
-    position: absolute;
-    left: 50%;
-    top: 50%;
     transform: translate(-50%, -50%);
-    box-sizing: border-box;
+    content: '';
   }
 }
 
 .input:checked + .smallColor {
-  &:before {
-    content: '';
+  &::before {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    box-sizing: border-box;
     width: 20px;
     height: 20px;
     border: 1px solid #5ece7b;
-    position: absolute;
-    left: 50%;
-    top: 50%;
     transform: translate(-50%, -50%);
-    box-sizing: border-box;
+    content: '';
   }
 }

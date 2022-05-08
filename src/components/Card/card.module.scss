@@ -6,10 +6,12 @@
   padding: 16px;
   cursor: pointer;
   transition: filter 0.3s;
+
   &:hover {
+    background-color: white;
     filter: drop-shadow($cardHoveredShadow);
     transition: all 0.3s;
-    background-color: white;
+
     & .button {
       opacity: 1;
       transition: opacity 0.8s;
@@ -22,10 +24,10 @@
 }
 
 .image {
-  object-fit: cover;
+  display: block;
   width: 100%;
   height: 100%;
-  display: block;
+  object-fit: cover;
 }
 
 .disabledImage {
@@ -33,56 +35,57 @@
 }
 
 .name {
+  margin-top: 24px;
+  color: $textColor;
   font-weight: 300;
   font-size: 18px;
-  line-height: 160%;
-  color: $textColor;
   font-family: $primaryFont;
-  margin-top: 24px;
+  line-height: 160%;
 }
 
 .disabledName {
+  margin-top: 24px;
+  color: #8d8f9a;
   font-weight: 300;
   font-size: 18px;
-  line-height: 160%;
-  color: #8d8f9a;
   font-family: $primaryFont;
-  margin-top: 24px;
+  line-height: 160%;
 }
 
 .price {
+  color: $textColor;
   font-weight: 500;
   font-size: 18px;
-  line-height: 160%;
   font-family: $primaryFont;
-  color: $textColor;
+  line-height: 160%;
 }
 
 .disabledPrice {
+  color: #8d8f9a;
   font-weight: 500;
   font-size: 18px;
-  line-height: 160%;
   font-family: $primaryFont;
-  color: #8d8f9a;
+  line-height: 160%;
 }
 
 .imageContainer {
-  height: 330px;
-  width: 100%;
   position: relative;
+  width: 100%;
+  height: 330px;
 }
 
 .button {
-  background-color: #5ece7b;
-  width: 52px;
-  height: 52px;
-  border-radius: 50%;
   position: absolute;
   right: 15px;
   bottom: 0;
+  width: 52px;
+  height: 52px;
+  background-color: #5ece7b;
+  border-radius: 50%;
   transform: translateY(50%);
-  transition: all 0.4s;
   opacity: 0;
+  transition: all 0.4s;
+
   &:hover {
     background-color: #4daa66;
     transition: background-color 0.4s;
@@ -90,14 +93,14 @@
 }
 
 .helpText {
-  font-weight: 400;
-  font-size: 24px;
-  line-height: 160%;
-  color: #8d8f9a;
-  text-transform: uppercase;
   position: absolute;
   top: 50%;
   left: 50%;
-  transform: translate(-50%, -50%);
+  color: #8d8f9a;
+  font-weight: 400;
+  font-size: 24px;
   font-family: $primaryFont;
+  line-height: 160%;
+  text-transform: uppercase;
+  transform: translate(-50%, -50%);
 }

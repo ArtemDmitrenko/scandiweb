@@ -1,3 +1,5 @@
+/* stylelint-disable value-list-comma-newline-after */
+/* stylelint-disable declaration-colon-newline-after */
 $large_desktop: 1440px;
 $small_desktop: 1280px;
 
@@ -9,10 +11,10 @@ $small_mobile: 420px;
 
 $primaryColor: #5ece7b;
 $black: #1d1f22;
-$white: #ffffff;
+$white: #fff;
 $textColor: #1d1f22;
 
-$cardHoveredShadow: 0px 4px 35px rgba(168, 172, 176, 0.19);
+$cardHoveredShadow: 0 4px 35px rgb(168 172 176 / 19%);
 
 $primaryFont: 'Raleway', sans-serif;
 
@@ -27,9 +29,9 @@ $primaryFont: 'Raleway', sans-serif;
 }
 
 @mixin h1() {
+  color: $textColor;
   font-weight: 400;
   font-size: 42px;
-  line-height: 160%;
-  color: $textColor;
   font-family: $primaryFont;
+  line-height: 160%;
 }

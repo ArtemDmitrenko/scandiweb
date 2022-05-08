@@ -1,4 +1,4 @@
-import { CHANGE_CURRENCY } from './currencyActions';
+import CHANGE_CURRENCY from './currencyActions';
 
 const defaultState = {
   currency: ''

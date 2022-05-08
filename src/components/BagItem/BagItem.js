@@ -8,14 +8,12 @@ import Slider from 'components/Slider/Slider';
 import styles from './bagItem.module.scss';
 
 class BagItem extends React.Component {
-  // eslint-disable-next-line class-methods-use-this
   handleAmountChange = (action) => {
     const { handleAmountChange, product } = this.props;
     handleAmountChange(product.id, action);
   };
 
   render() {
-    // eslint-disable-next-line react/destructuring-assignment
     const {
       size,
       product: { id, brand, name, prices, attributes, gallery, value },
@@ -65,8 +63,7 @@ class BagItem extends React.Component {
 BagItem.propTypes = {
   size: PropTypes.string.isRequired,
   componentLocation: PropTypes.string.isRequired,
-  // eslint-disable-next-line react/forbid-prop-types
-  product: PropTypes.object.isRequired,
+  product: PropTypes.instanceOf(Object).isRequired,
   handleAmountChange: PropTypes.func.isRequired,
   currency: PropTypes.string.isRequired,
   handleAttributeChange: PropTypes.func.isRequired

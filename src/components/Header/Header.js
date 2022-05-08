@@ -11,7 +11,6 @@ import styles from './header.module.scss';
 class Header extends React.Component {
   render() {
     const { categories, currencies, activeCurrency, activeCategory, handleClickTab } = this.props;
-
     return (
       <header className={styles.container}>
         <div className={styles.nav}>
@@ -36,22 +35,11 @@ class Header extends React.Component {
 }
 
 Header.propTypes = {
-  // eslint-disable-next-line react/forbid-prop-types
-  categories: PropTypes.array.isRequired,
-  // eslint-disable-next-line react/forbid-prop-types
-  currencies: PropTypes.array.isRequired,
+  categories: PropTypes.instanceOf(Array).isRequired,
+  currencies: PropTypes.instanceOf(Array).isRequired,
   activeCurrency: PropTypes.string.isRequired,
-  // eslint-disable-next-line react/forbid-prop-types
-  // products: PropTypes.array.isRequired,
   handleClickTab: PropTypes.func.isRequired,
   activeCategory: PropTypes.string.isRequired
 };
-
-// Header.defaultProps = {
-//   disabled: false,
-//   href: '/',
-//   onClick: () => {},
-//   buttonType: 'button'
-// };
 
 export default Header;

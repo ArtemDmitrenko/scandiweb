@@ -3,10 +3,9 @@
 .container {
   display: flex;
   justify-content: space-between;
+  width: fit-content;
   max-width: 730px;
   max-height: 500px;
-  width: fit-content;
-  // max-height: 550px;
 }
 
 .image {
@@ -29,10 +28,11 @@
 }
 
 .thumbImageContainer {
-  margin-right: 20px;
   width: 80px;
   height: 80px;
+  margin-right: 20px;
   margin-bottom: 40px;
+
   &:last-child {
     margin-bottom: 0;
   }

@@ -1,5 +1,3 @@
-/* eslint-disable react/prop-types */
-/* eslint-disable react/destructuring-assignment */
 import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
@@ -18,9 +16,7 @@ import calcAmountOfItems from 'utils/calcAmountOfItems';
 import styles from './cart.module.scss';
 
 class Cart extends React.Component {
-  // eslint-disable-next-line class-methods-use-this
   handleAmountChange = (id, action) => {
-    // eslint-disable-next-line react/prop-types
     const { dispatch } = this.props;
     switch (action) {
       case 'increase':
@@ -39,40 +35,26 @@ class Cart extends React.Component {
     }
   };
 
-  // eslint-disable-next-line class-methods-use-this
-  handleAttributeChange = (id, name, value) => {
-    const { products, dispatch } = this.props;
-    const changingProduct = products.filter((product) => product.id === id);
-    const { attributes } = changingProduct[0];
-    const newArr = attributes.map((item) => {
-      if (item.name === name) {
-        item.items.forEach((attributeValue) => {
-          if (attributeValue.displayValue === value) {
-            // eslint-disable-next-line no-param-reassign
-            attributeValue.isChecked = true;
-          } else if (attributeValue.isChecked) {
-            // eslint-disable-next-line no-param-reassign
-            delete attributeValue.isChecked;
-          }
-        });
-      }
-      return item;
-    });
-    changingProduct.attributes = newArr;
+  handleAttributeChange = (idProduct, name, value) => {
+    const { dispatch } = this.props;
+    const payload = {
+      idProduct,
+      name,
+      value
+    };
     dispatch({
       type: SET_ATTRIBUTE,
-      payload: changingProduct
+      payload
     });
   };
 
   handleButtonCheckoutClick = () => {
     const { products } = this.props;
-    const formatedData = getFormattedData(products);
-    alert(JSON.stringify(formatedData));
+    const formattedData = getFormattedData(products);
+    alert(JSON.stringify(formattedData));
   };
 
   render() {
-    // eslint-disable-next-line react/prop-types
     const { size, products, currency } = this.props;
     return (
       <div className={styles.container}>
@@ -129,14 +111,11 @@ class Cart extends React.Component {
 }
 
 Cart.propTypes = {
-  size: PropTypes.string.isRequired
-  // eslint-disable-next-line react/forbid-prop-types
-  // products: PropTypes.array.isRequired
+  size: PropTypes.string.isRequired,
+  currency: PropTypes.string.isRequired,
+  products: PropTypes.instanceOf(Array).isRequired,
+  dispatch: PropTypes.func.isRequired
 };
-
-// ProductsList.defaultProps = {
-//   defAmount: 0
-// };
 
 const mapStateToProps = (store) => {
   return {
@@ -146,5 +125,3 @@ const mapStateToProps = (store) => {
 };
 
 export default connect(mapStateToProps)(Cart);
-
-// export default Cart;

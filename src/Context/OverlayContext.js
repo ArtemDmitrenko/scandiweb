@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 const OverlayContext = React.createContext();
 
@@ -8,7 +9,6 @@ export class OverlayProvider extends React.Component {
     this.state = {
       overlayProducts: false
     };
-    console.log('neeeeew context!!!!!');
   }
 
   setOverlay = () => {
@@ -19,10 +19,7 @@ export class OverlayProvider extends React.Component {
 
   render() {
     const { overlayProducts } = this.state;
-    console.log('context rendering...', overlayProducts);
-
     const { setOverlay } = this;
-    // eslint-disable-next-line react/prop-types
     const { children } = this.props;
     return (
       // eslint-disable-next-line react/jsx-no-constructed-context-values
@@ -32,5 +29,9 @@ export class OverlayProvider extends React.Component {
     );
   }
 }
+
+OverlayProvider.propTypes = {
+  children: PropTypes.node.isRequired
+};
 
 export default OverlayContext;

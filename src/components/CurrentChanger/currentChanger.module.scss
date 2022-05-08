@@ -1,8 +1,8 @@
 @import '../../style/variables.scss';
 
 .container {
-  width: fit-content;
   position: relative;
+  width: fit-content;
 }
 
 .button {
@@ -16,43 +16,45 @@
 
 .checkMark {
   display: inline-block;
-  transform: rotate(45deg);
-  height: 5px;
   width: 5px;
-  border-bottom: 1px solid #000000;
-  border-right: 1px solid #000000;
+  height: 5px;
+  border-right: 1px solid #000;
+  border-bottom: 1px solid #000;
+  transform: rotate(45deg);
 }
 
 .checkMarkClosed {
   transform: rotate(45deg);
   transition: all 0.4s;
 }
+
 .checkMarkOpened {
   transform: rotate(225deg) translateY(-2px) translateX(-2px);
   transition: all 0.4s;
 }
 
 .list {
-  filter: drop-shadow($cardHoveredShadow);
   position: absolute;
   top: 30px;
   right: -10%;
-  width: max-content;
   z-index: 1;
+  width: max-content;
+  filter: drop-shadow($cardHoveredShadow);
 }
 
 .buttonSelect {
   width: 100%;
   height: 45px;
+  padding: 8px 40px 8px 20px;
+  color: $textColor;
   font-weight: 500;
   font-size: 18px;
   line-height: 160%;
-  color: $textColor;
-  padding: 8px 40px 8px 20px;
-  background-color: white;
   text-align: left;
+  background-color: white;
+
   &:hover {
-    background-color: #eeeeee;
+    background-color: #eee;
   }
 }
 

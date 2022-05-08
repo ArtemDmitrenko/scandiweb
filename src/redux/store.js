@@ -1,4 +1,3 @@
-// import { combineReducers } from 'redux';
 import { configureStore, combineReducers } from '@reduxjs/toolkit';
 import {
   persistStore,
@@ -11,7 +10,7 @@ import {
   REGISTER
 } from 'redux-persist';
 import storage from 'redux-persist/lib/storage';
-// import { composeWithDevTools } from 'redux-devtools-extension';
+
 import currencyReducer from './currency/currencyReducer';
 import cartProductsReducer from './cartProducts/cartProductsReducer';
 
@@ -27,7 +26,6 @@ const persistConfig = {
 
 const persistedReducer = persistReducer(persistConfig, rootReducer);
 
-// const store = configureStore(rootReducer, composeWithDevTools());
 const store = configureStore({
   reducer: persistedReducer,
   middleware: (getDefaultMiddleware) =>

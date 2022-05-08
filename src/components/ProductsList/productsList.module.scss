@@ -1,21 +1,21 @@
 @import '../../style/variables.scss';
 
 .title {
+  margin-bottom: 103px;
+  color: $textColor;
   font-weight: 400;
   font-size: 42px;
-  line-height: 160%;
   font-family: $primaryFont;
-  color: $textColor;
-  margin-bottom: 103px;
+  line-height: 160%;
   text-transform: capitalize;
 }
 
 .products {
   display: flex;
-  column-gap: 40px;
-  row-gap: 103px;
   flex-wrap: wrap;
   justify-content: flex-start;
+  column-gap: 40px;
+  row-gap: 103px;
 }
 
 .product {
@@ -24,9 +24,9 @@
 
 .text {
   margin-top: 20px;
+  color: $textColor;
   font-weight: 400;
   font-size: 42px;
-  line-height: 160%;
   font-family: $primaryFont;
-  color: $textColor;
+  line-height: 160%;
 }

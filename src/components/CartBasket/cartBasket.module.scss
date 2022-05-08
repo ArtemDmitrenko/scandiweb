@@ -2,20 +2,20 @@
 
 .total {
   position: absolute;
+  bottom: 13px;
+  left: 13px;
   min-width: 20px;
   min-height: 20px;
-  background-color: #1d1f22;
-  border-radius: 50%;
-  color: white;
-  user-select: none;
-  font-weight: 700;
-  font-size: 14px;
-  line-height: 16px;
-  font-family: $primaryFont;
   padding-right: 5px;
   padding-left: 5px;
-  left: 13px;
-  bottom: 13px;
+  color: white;
+  font-weight: 700;
+  font-size: 14px;
+  font-family: $primaryFont;
+  line-height: 16px;
+  background-color: #1d1f22;
+  border-radius: 50%;
+  user-select: none;
 }
 
 .button {
@@ -27,28 +27,28 @@
 }
 
 .cartBasket {
-  width: fit-content;
   position: relative;
+  width: fit-content;
 }
 
 .list {
   position: absolute;
-  right: 0;
-  min-width: 340px;
-  z-index: 2;
   top: 52px;
+  right: 0;
+  z-index: 2;
+  min-width: 340px;
 }
 
 .emptyList {
   position: absolute;
-  right: 0;
-  width: max-content;
-  z-index: 2;
   top: 52px;
-  background-color: white;
+  right: 0;
+  z-index: 2;
+  width: max-content;
   padding: 20px;
   font-weight: 700;
   font-size: 14px;
-  line-height: 16px;
   font-family: $primaryFont;
+  line-height: 16px;
+  background-color: white;
 }

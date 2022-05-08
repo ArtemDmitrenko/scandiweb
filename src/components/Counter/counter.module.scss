@@ -10,6 +10,7 @@
 .smallCounter {
   max-width: 24px;
 }
+
 .bigCounter {
   max-width: 45px;
   margin-right: 24px;
@@ -17,9 +18,10 @@
 
 .button {
   border: 1px solid $textColor;
+
   &:disabled {
-    opacity: 0.5;
     cursor: not-allowed;
+    opacity: 0.5;
   }
 }
 
@@ -34,39 +36,40 @@
 }
 
 .plus {
-  background: $textColor;
-  height: 8px;
-  width: 1px;
   position: relative;
-  transform: translateX(-50%);
+  width: 1px;
+  height: 8px;
   margin: 0 auto;
+  background: $textColor;
+  transform: translateX(-50%);
+
   &::after {
-    content: '';
-    height: 1px;
-    width: 8px;
-    background: $textColor;
     position: absolute;
-    left: 50%;
     top: 4px;
+    left: 50%;
+    width: 8px;
+    height: 1px;
+    background: $textColor;
     transform: translateX(-50%);
+    content: '';
   }
 }
 
 .minus {
-  background: $textColor;
-  height: 1px;
   width: 8px;
+  height: 1px;
   margin: 0 auto;
+  background: $textColor;
 }
 
 .input {
-  border: none;
-  text-align: center;
-  font-weight: 500;
-  line-height: 160%;
   color: $textColor;
+  font-weight: 500;
   font-family: $primaryFont;
+  line-height: 160%;
+  text-align: center;
   background: none;
+  border: none;
 }
 
 .smallInput {

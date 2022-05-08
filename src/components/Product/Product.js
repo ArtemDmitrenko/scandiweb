@@ -1,25 +1,21 @@
-/* eslint-disable consistent-return */
-/* eslint-disable class-methods-use-this */
-/* eslint-disable react/prop-types */
-/* eslint-disable react/destructuring-assignment */
+/* eslint-disable no-param-reassign */
 /* eslint-disable react/jsx-props-no-spreading */
 /* eslint-disable react/display-name */
 /* eslint-disable react/function-component-definition */
-/* eslint-disable react/no-unescaped-entities */
 import React from 'react';
 import { useParams } from 'react-router-dom';
 import { connect } from 'react-redux';
-import axios from 'axios';
+import PropTypes from 'prop-types';
 
 import ThumbSlider from 'components/ThumbSlider/ThumbSlider';
 import ProductDescription from 'components/ProductDescription/ProductDescription';
 import Button from 'components/Button/Button';
 import { ADD_PRODUCT } from 'redux/cartProducts/cartProductsActions';
+import { fetchProduct } from 'fetch/fetch';
 
 import styles from './product.module.scss';
 
 function withParams(Component) {
-  // eslint-disable-next-line prettier/prettier
   return (props) => <Component {...props} params={useParams()} />;
 }
 
@@ -32,8 +28,10 @@ class Product extends React.Component {
   }
 
   async componentDidMount() {
-    const { id } = this.props.params;
-    const product = await this.fetchProduct(id);
+    const {
+      params: { id }
+    } = this.props;
+    const product = await fetchProduct(id);
     this.setDefaultAttributes(product);
     this.setState({
       product
@@ -42,36 +40,11 @@ class Product extends React.Component {
 
   setDefaultAttributes = (product) => {
     product.attributes.forEach((attribute) => {
-      // eslint-disable-next-line no-param-reassign
       attribute.items[0].isChecked = true;
     });
     this.setState({
       product
     });
-  };
-
-  fetchProduct = async (id) => {
-    try {
-      const { data } = await axios({
-        url: 'http://localhost:4000/graphql',
-        method: 'post',
-        data: {
-          query: `
-          query Product($id: String!) {
-            product(id: $id) {
-              id, name, gallery, description, attributes {id, name, type, items {id, displayValue, value}}, prices {amount, currency {symbol}}, brand
-            }
-          }          
-        `,
-          variables: {
-            id
-          }
-        }
-      });
-      return data.data.product;
-    } catch (err) {
-      console.log(err.message);
-    }
   };
 
   handleAttributeChange = (name, value) => {
@@ -81,10 +54,8 @@ class Product extends React.Component {
       if (item.name === name) {
         item.items.forEach((attributeValue) => {
           if (attributeValue.displayValue === value) {
-            // eslint-disable-next-line no-param-reassign
             attributeValue.isChecked = true;
           } else if (attributeValue.isChecked) {
-            // eslint-disable-next-line no-param-reassign
             delete attributeValue.isChecked;
           }
         });
@@ -106,10 +77,6 @@ class Product extends React.Component {
       payload: product
     });
   };
-
-  // renderDescription = (description) => {
-  //   this.descriptionRef.innerHTML = description;
-  // };
 
   render() {
     const { currency } = this.props;
@@ -163,15 +130,11 @@ class Product extends React.Component {
   }
 }
 
-// Product.propTypes = {
-//   // eslint-disable-next-line react/forbid-prop-types
-//   // eslint-disable-next-line react/forbid-prop-types
-//   product: PropTypes.object.isRequired
-// };
-
-// ProductDescription.defaultProps = {
-//   defAmount: 0
-// };
+Product.propTypes = {
+  params: PropTypes.instanceOf(Object).isRequired,
+  currency: PropTypes.string.isRequired,
+  dispatch: PropTypes.func.isRequired
+};
 
 const mapStateToProps = (store) => {
   return {
@@ -181,6 +144,3 @@ const mapStateToProps = (store) => {
 };
 
 export default connect(mapStateToProps)(withParams(Product));
-
-// export default withParams(Product);
-// export default Product;

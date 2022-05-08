@@ -47,7 +47,6 @@ class CartBasket extends React.Component {
   };
 
   handleAmountChange = (id, action) => {
-    // eslint-disable-next-line react/prop-types
     const { dispatch } = this.props;
     switch (action) {
       case 'increase':
@@ -79,43 +78,17 @@ class CartBasket extends React.Component {
     alert(JSON.stringify(formatedData));
   };
 
-  // eslint-disable-next-line class-methods-use-this
   handleAttributeChange = (idProduct, name, value) => {
-    // eslint-disable-next-line react/prop-types
     const { dispatch } = this.props;
     const payload = {
       idProduct,
       name,
       value
     };
-
-    // const productsCopy = products.map((item) => ({ ...item }));
-
-    // const changingProduct = productsCopy.filter((product) => product.id === idProduct);
-    // const { attributes } = changingProduct[0];
-    // const newArr = attributes.map((item) => {
-    //   if (item.name === name) {
-    //     item.items.forEach((attributeValue) => {
-    //       if (attributeValue.displayValue === value) {
-    //         // eslint-disable-next-line no-param-reassign
-    //         attributeValue.isChecked = true;
-    //       } else if (attributeValue.isChecked) {
-    //         // eslint-disable-next-line no-param-reassign
-    //         delete attributeValue.isChecked;
-    //       }
-    //     });
-    //   }
-    //   return item;
-    // });
-    // changingProduct[0].attributes = newArr;
-    // console.log(changingProduct[0]);
     dispatch({
       type: SET_ATTRIBUTE,
       payload
     });
-    // this.setState({
-    //   product
-    // });
   };
 
   render() {
@@ -153,10 +126,9 @@ class CartBasket extends React.Component {
 CartBasket.contextType = OverlayContext;
 
 CartBasket.propTypes = {
-  // amount: PropTypes.number.isRequired,
-  // eslint-disable-next-line react/forbid-prop-types
-  products: PropTypes.array.isRequired,
-  currency: PropTypes.string.isRequired
+  products: PropTypes.instanceOf(Array).isRequired,
+  currency: PropTypes.string.isRequired,
+  dispatch: PropTypes.func.isRequired
 };
 
 const mapStateToProps = (store) => {
@@ -167,5 +139,3 @@ const mapStateToProps = (store) => {
 };
 
 export default connect(mapStateToProps)(CartBasket);
-
-// export default CartBasket;

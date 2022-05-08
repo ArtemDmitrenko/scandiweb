@@ -2,8 +2,8 @@
 
 .item {
   display: flex;
-  height: 100%;
   justify-content: space-between;
+  height: 100%;
 }
 
 .imageContainer {
@@ -11,14 +11,14 @@
 }
 
 .image {
-  object-fit: contain;
   width: 100%;
   height: 100%;
+  object-fit: contain;
 }
 
 .descriptionContainer {
-  margin-right: 4px;
   width: 50%;
+  margin-right: 4px;
 }
 
 .counterContainer {

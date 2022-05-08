@@ -1,6 +1,5 @@
-/* eslint-disable react/destructuring-assignment */
-/* eslint-disable jsx-a11y/no-noninteractive-element-interactions */
 /* eslint-disable jsx-a11y/click-events-have-key-events */
+/* eslint-disable jsx-a11y/no-noninteractive-element-interactions */
 import React from 'react';
 import PropTypes from 'prop-types';
 
@@ -9,8 +8,9 @@ import styles from './thumbSlider.module.scss';
 class ThumbSlider extends React.Component {
   constructor(props) {
     super(props);
+    const { images } = this.props;
     this.state = {
-      activeImgSrc: this.props.images[0]
+      activeImgSrc: images[0]
     };
   }
 
@@ -46,38 +46,7 @@ class ThumbSlider extends React.Component {
 }
 
 ThumbSlider.propTypes = {
-  // eslint-disable-next-line react/forbid-prop-types
-  images: PropTypes.array.isRequired
+  images: PropTypes.instanceOf(Array).isRequired
 };
-// Product.propTypes = {
-// size: PropTypes.oneOf(['big', 'small']).isRequired,
-// eslint-disable-next-line react/forbid-prop-types
-// product: PropTypes.object.isRequired
-// product: PropTypes.objectOf(
-//   PropTypes.shape({
-//     name: PropTypes.string.isRequired,
-//     brand: PropTypes.string.isRequired,
-//     // eslint-disable-next-line react/forbid-prop-types
-//     prices: PropTypes.array.isRequired,
-//     attributes: PropTypes.arrayOf(
-//       PropTypes.shape({
-//         name: PropTypes.string.isRequired,
-//         type: PropTypes.string.isRequired,
-//         items: PropTypes.arrayOf(
-//           PropTypes.shape({
-//             id: PropTypes.string.isRequired,
-//             displayValue: PropTypes.string.isRequired,
-//             value: PropTypes.string.isRequired
-//           })
-//         ).isRequired
-//       })
-//     ).isRequired
-//   })
-// ).isRequired
-// };
-
-// ProductDescription.defaultProps = {
-//   defAmount: 0
-// };
 
 export default ThumbSlider;

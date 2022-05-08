@@ -29,7 +29,7 @@ const cartProductsReducer = (state = defaultState, action) => {
       };
     }
     case DECREASE_PRODUCT_QUANTITY: {
-      const stateCopy = state.products.map((value) => ({ ...value }));
+      const stateCopy = JSON.parse(JSON.stringify(state.products));
       const newState = stateCopy.reduce((prev, product) => {
         if (product.id === action.payload) {
           if (product.value !== 1) {
@@ -48,7 +48,7 @@ const cartProductsReducer = (state = defaultState, action) => {
       };
     }
     case ADD_PRODUCT: {
-      const productsCopy = state.products.map((value) => ({ ...value }));
+      const productsCopy = JSON.parse(JSON.stringify(state.products));
       const isProductInState =
         productsCopy.filter((item) => item.id === action.payload.id).length > 0;
       if (!isProductInState) {
@@ -65,61 +65,30 @@ const cartProductsReducer = (state = defaultState, action) => {
       return { ...state, products: [...newProducts] };
     }
     case SET_ATTRIBUTE: {
-      console.log(action.payload);
-
-      const productsCopy = state.products.map((value) => ({ ...value }));
-      const indexOfChangedProduct = productsCopy.indexOf(
-        (item) => item.id === action.payload.idProduct
-      );
-      const changedProduct = productsCopy.find((item) => item.id === action.payload.idProduct);
-
-      console.log(productsCopy);
-      // const newProducts = productsCopy.map((product) => {
-      //   if (product.id === action.payload.idProduct) {
-      //     product.attributes.map((attribute) => {
-      //       if (attribute.name === action.payload.name) {
-      //         attribute.items.map((value) => {
-      //           if (value.displayValue === action.payload.value) {
-      //             value.isChecked = true;
-      //           } else if (value.isChecked) {
-      //             delete value.isChecked;
-      //           }
-      //           return value;
-      //         });
-      //       }
-      //       return attribute;
-      //     });
-      //   }
-      //   return product;
-      // });
+      const productsCopy = JSON.parse(JSON.stringify(state.products));
+      const newProducts = productsCopy.map((product) => {
+        if (product.id === action.payload.idProduct) {
+          product.attributes.map((attribute) => {
+            if (attribute.name === action.payload.name) {
+              attribute.items.map((value) => {
+                if (value.displayValue === action.payload.value) {
+                  value.isChecked = true;
+                } else if (value.isChecked) {
+                  delete value.isChecked;
+                }
+                return value;
+              });
+            }
+            return attribute;
+          });
+        }
+        return product;
+      });
       return {
         ...state,
-        // eslint-disable-next-line no-return-assign
-        products: [...productsCopy]
+        products: [...newProducts]
       };
     }
-
-    // const newState = productsCopy.map((product) => {
-    //   if (product.id === action.payload.id) {
-    //     product.attributes.map((attribute) => {
-    //       if (attribute.name === action.payload.name) {
-    //         attribute.items.map((value) => {
-    //           if (value.displayValue === action.payload.value) {
-    //             value.isChecked = true;
-    //           } else if (value.isChecked) {
-    //             delete value.isChecked;
-    //           }
-    //           return value;
-    //         });
-    //       }
-    //       return attribute;
-    //     });
-    //   }
-    //   return product;
-    // });
-    // return { ...state, products: [...newState] };
-    // }
-    // eslint-disable-next-line no-fallthrough
     default:
       return state;
   }

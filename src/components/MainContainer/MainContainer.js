@@ -1,5 +1,3 @@
-/* eslint-disable consistent-return */
-/* eslint-disable class-methods-use-this */
 import React from 'react';
 import PropTypes from 'prop-types';
 
@@ -21,8 +19,7 @@ class MainContainer extends React.Component {
 }
 
 MainContainer.propTypes = {
-  // eslint-disable-next-line react/forbid-prop-types
-  children: PropTypes.any.isRequired
+  children: PropTypes.node.isRequired
 };
 
 MainContainer.contextType = OverlayContext;

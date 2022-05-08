@@ -10,7 +10,6 @@ class CurrentChanger extends React.Component {
     this.state = {
       isOpened: false
     };
-    // eslint-disable-next-line react/destructuring-assignment
     this.currencyMenuRef = React.createRef();
   }
 
@@ -38,7 +37,6 @@ class CurrentChanger extends React.Component {
   };
 
   handleClickOnCurrency = (symbol) => {
-    // eslint-disable-next-line react/prop-types
     const { dispatch } = this.props;
     dispatch({
       type: 'CHANGE_CURRENCY',
@@ -90,7 +88,8 @@ CurrentChanger.propTypes = {
       label: PropTypes.string.isRequired
     })
   ).isRequired,
-  activeCurrency: PropTypes.string.isRequired
+  activeCurrency: PropTypes.string.isRequired,
+  dispatch: PropTypes.func.isRequired
 };
 
 const mapStateToProps = (store) => {
@@ -100,5 +99,3 @@ const mapStateToProps = (store) => {
 };
 
 export default connect(mapStateToProps)(CurrentChanger);
-
-// export default CurrentChanger;

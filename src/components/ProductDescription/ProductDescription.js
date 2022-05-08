@@ -1,4 +1,3 @@
-/* eslint-disable react/require-default-props */
 import React from 'react';
 import PropTypes from 'prop-types';
 
@@ -8,13 +7,6 @@ import setPriceInCurrency from 'utils/setPriceInCurrency';
 import styles from './productDescription.module.scss';
 
 class ProductDescription extends React.Component {
-  // constructor(props) {
-  //   super(props);
-  //   // this.state = {
-  //   //   amount: props.defAmount
-  //   // };
-  // }
-
   stylesBrand = () => {
     const { size } = this.props;
     return `${styles.brand} ${size === 'small' ? styles.brandSmall : styles.brandBig}`;
@@ -31,13 +23,9 @@ class ProductDescription extends React.Component {
   };
 
   renderBigPrice = () => {
-    // eslint-disable-next-line react/prop-types
     const { currency, prices } = this.props;
     const currentPrice =
       prices.length === 0 || currency === '' ? '' : setPriceInCurrency(prices, currency);
-
-    // return priceArr.find((item) => item.currency.symbol === currency).amount;
-
     return (
       <>
         <p className={styles.titlePrice}>Price:</p>
@@ -49,15 +37,7 @@ class ProductDescription extends React.Component {
     );
   };
 
-  // renderPrice = (priceArr) => {
-  //   // eslint-disable-next-line react/prop-types
-  //   const { currency } = this.props;
-  //   console.log(priceArr);
-  //   return priceArr.find((item) => item.currency.symbol === currency).amount;
-  // };
-
   render() {
-    // eslint-disable-next-line react/prop-types
     const {
       size,
       isPriceOnTop,
@@ -77,7 +57,6 @@ class ProductDescription extends React.Component {
           <p className={this.stylesPrice()}>
             {currency}
             {setPriceInCurrency(prices, currency)}
-            {/* {this.renderPrice(prices)} */}
           </p>
         )}
         <ul className={styles.attributes}>
@@ -109,26 +88,14 @@ ProductDescription.propTypes = {
   isPriceOnTop: PropTypes.bool,
   brand: PropTypes.string.isRequired,
   name: PropTypes.string.isRequired,
-  // eslint-disable-next-line react/forbid-prop-types
-  prices: PropTypes.array.isRequired,
-  // eslint-disable-next-line react/forbid-prop-types
-  attributes: PropTypes.array.isRequired,
-  // eslint-disable-next-line react/require-default-props
-  handleAttributeChange: PropTypes.func,
-  // eslint-disable-next-line react/require-default-props
+  prices: PropTypes.instanceOf(Array).isRequired,
+  attributes: PropTypes.instanceOf(Array).isRequired,
+  handleAttributeChange: PropTypes.func.isRequired,
   currency: PropTypes.string.isRequired
 };
 
 ProductDescription.defaultProps = {
   isPriceOnTop: false
 };
-
-// const mapStateToProps = (store) => {
-//   return {
-//     currency: store.currencyReducer.currency
-//   };
-// };
-
-// export default connect(mapStateToProps)(ProductDescription);
 
 export default ProductDescription;

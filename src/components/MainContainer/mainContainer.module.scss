@@ -4,14 +4,14 @@
 }
 
 .overlay {
-  content: '';
   position: absolute;
   top: 0;
-  left: 0;
   right: 0;
   bottom: 0;
-  background: rgba(57, 55, 72, 0.22);
+  left: 0;
   z-index: 1;
+  background: rgb(57 55 72 / 22%);
+  content: '';
 }
 
 .wrapper {

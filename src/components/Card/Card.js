@@ -6,33 +6,30 @@ import styles from './card.module.scss';
 import basket from './images/empty-cart.svg';
 
 class Card extends React.Component {
-  constructor(props) {
-    super(props);
-    this.setClasses();
-  }
-
-  setClasses() {
+  setCardClasses = () => {
     const { inStock } = this.props;
     const cardClassesArr = [styles.card];
-    const imageClassesArr = [styles.image];
     if (!inStock) {
       cardClassesArr.push(styles.disabledCard);
+    }
+    return cardClassesArr.join(' ');
+  };
+
+  setImageClasses = () => {
+    const { inStock } = this.props;
+    const imageClassesArr = [styles.image];
+    if (!inStock) {
       imageClassesArr.push(styles.disabledImage);
     }
-    this.cardClasses = cardClassesArr.join(' ');
-    this.imageClasses = imageClassesArr.join(' ');
-  }
-
-  // handleClick = (e) => {
-
-  // }
+    return imageClassesArr.join(' ');
+  };
 
   render() {
     const { id, name, price, currency, imgSrc, inStock, brand, handleClickOnButton } = this.props;
     return (
-      <Link className={this.cardClasses} to={`${id}`}>
+      <Link className={this.setCardClasses()} to={`${id}`}>
         <div className={styles.imageContainer}>
-          <img className={this.imageClasses} src={imgSrc} alt="Product" />
+          <img className={this.setImageClasses()} src={imgSrc} alt="Product" />
           {!inStock && <span className={styles.helpText}>Out of stock</span>}
           <button className={styles.button} type="button" onClick={handleClickOnButton}>
             <img src={basket} alt="Add to basket" />
