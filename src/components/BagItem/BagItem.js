@@ -1,15 +1,17 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+
+import ProductDescription from 'components/ProductDescription/ProductDescription';
+import Counter from 'components/Counter/Counter';
+import Slider from 'components/Slider/Slider';
+
 import styles from './bagItem.module.scss';
-import ProductDescription from '../ProductDescription/ProductDescription';
-import Counter from '../Counter/Counter';
-import Slider from '../Slider/Slider';
 
 class BagItem extends React.Component {
   // eslint-disable-next-line class-methods-use-this
   handleAmountChange = (action) => {
     const { handleAmountChange, product } = this.props;
-    handleAmountChange(product, action);
+    handleAmountChange(product.id, action);
   };
 
   render() {

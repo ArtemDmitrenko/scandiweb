@@ -3,47 +3,36 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
+
+import BagItem from 'components/BagItem/BagItem';
+import Button from 'components/Button/Button';
 import {
-  ADD_PRODUCT,
-  REMOVE_PRODUCT,
+  INCREASE_PRODUCT_QUANTITY,
+  DECREASE_PRODUCT_QUANTITY,
   SET_ATTRIBUTE
-} from '../../redux/cartProducts/cartProductsActions';
-import getFormattedData from '../../utils/getFormattedData';
+} from 'redux/cartProducts/cartProductsActions';
+import getFormattedData from 'utils/getFormattedData';
+import calcTotalSum from 'utils/calcTotalSum';
+import calcAmountOfItems from 'utils/calcAmountOfItems';
 
-import calcTotalSum from '../../utils/calcTotalSum';
-import calcAmountOfItems from '../../utils/calcAmountOfItems';
-
-// import ProductDescription from '../ProductDescription/ProductDescription';
 import styles from './cart.module.scss';
-// import Counter from '../Counter/Counter';
-// import Slider from '../Slider/Slider';
-import BagItem from '../BagItem/BagItem';
-import Button from '../Button/Button';
-
-// const gallery = [
-//   'https://cdn.shopify.com/s/files/1/0087/6193/3920/products/DD1381200_DEOA_2_720x.jpg?v=1612816087',
-//   'https://cdn.shopify.com/s/files/1/0087/6193/3920/products/DD1381200_DEOA_1_720x.jpg?v=1612816087',
-//   'https://cdn.shopify.com/s/files/1/0087/6193/3920/products/DD1381200_DEOA_3_720x.jpg?v=1612816087',
-//   'https://cdn.shopify.com/s/files/1/0087/6193/3920/products/DD1381200_DEOA_5_720x.jpg?v=1612816087',
-//   'https://cdn.shopify.com/s/files/1/0087/6193/3920/products/DD1381200_DEOA_4_720x.jpg?v=1612816087'
-// ];
 
 class Cart extends React.Component {
   // eslint-disable-next-line class-methods-use-this
-  handleAmountChange = (product, action) => {
+  handleAmountChange = (id, action) => {
     // eslint-disable-next-line react/prop-types
     const { dispatch } = this.props;
     switch (action) {
       case 'increase':
         dispatch({
-          type: ADD_PRODUCT,
-          payload: product
+          type: INCREASE_PRODUCT_QUANTITY,
+          payload: id
         });
         break;
       case 'decrease':
         dispatch({
-          type: REMOVE_PRODUCT,
-          payload: product
+          type: DECREASE_PRODUCT_QUANTITY,
+          payload: id
         });
         break;
       default:
@@ -52,7 +41,6 @@ class Cart extends React.Component {
 
   // eslint-disable-next-line class-methods-use-this
   handleAttributeChange = (id, name, value) => {
-    console.log(id, name, value);
     const { products, dispatch } = this.props;
     const changingProduct = products.filter((product) => product.id === id);
     const { attributes } = changingProduct[0];

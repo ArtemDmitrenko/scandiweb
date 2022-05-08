@@ -8,159 +8,15 @@
 /* eslint-disable class-methods-use-this */
 import React from 'react';
 import axios from 'axios';
-import { useParams } from 'react-router-dom';
+import { useParams, Routes, Route } from 'react-router-dom';
 import { connect } from 'react-redux';
 
-import { Routes, Route } from 'react-router-dom';
-import Header from '../Header/Header';
-import Product from '../Product/Product';
-import ProductsList from '../ProductsList/ProductsList';
-import MainContainer from '../MainContainer/MainContainer';
-import Cart from '../Cart/Cart';
-// import { OverlayProvider } from '../../Context/OverlayContext';
-import { GET_ALL_CATEGORIES } from '../../query/categories';
-
-// const products = [
-//   {
-//     name: 'Nike Air Huarache Le',
-//     gallery: [
-//       'https://cdn.shopify.com/s/files/1/0087/6193/3920/products/DD1381200_DEOA_2_720x.jpg?v=1612816087',
-//       'https://cdn.shopify.com/s/files/1/0087/6193/3920/products/DD1381200_DEOA_1_720x.jpg?v=1612816087',
-//       'https://cdn.shopify.com/s/files/1/0087/6193/3920/products/DD1381200_DEOA_3_720x.jpg?v=1612816087',
-//       'https://cdn.shopify.com/s/files/1/0087/6193/3920/products/DD1381200_DEOA_5_720x.jpg?v=1612816087',
-//       'https://cdn.shopify.com/s/files/1/0087/6193/3920/products/DD1381200_DEOA_4_720x.jpg?v=1612816087'
-//     ],
-//     description: '<p>Great sneakers for everyday use!</p>',
-//     attributes: [
-//       {
-//         id: 'Size',
-//         name: 'Size',
-//         type: 'text',
-//         items: [
-//           {
-//             id: '40',
-//             displayValue: '40',
-//             value: '40'
-//           },
-//           {
-//             id: '41',
-//             displayValue: '41',
-//             value: '41'
-//           },
-//           {
-//             id: '42',
-//             displayValue: '42',
-//             value: '42'
-//           },
-//           {
-//             id: '43',
-//             displayValue: '43',
-//             value: '43'
-//           }
-//         ]
-//       }
-//     ],
-//     prices: [
-//       {
-//         amount: 144.69
-//       },
-//       {
-//         amount: 104
-//       },
-//       {
-//         amount: 186.65
-//       },
-//       {
-//         amount: 15625.24
-//       },
-//       {
-//         amount: 10941.76
-//       }
-//     ],
-//     brand: 'Nike x Stussy'
-//   },
-//   {
-//     name: 'PlayStation 5',
-//     gallery: [
-//       'https://images-na.ssl-images-amazon.com/images/I/510VSJ9mWDL._SL1262_.jpg',
-//       'https://images-na.ssl-images-amazon.com/images/I/610%2B69ZsKCL._SL1500_.jpg',
-//       'https://images-na.ssl-images-amazon.com/images/I/51iPoFwQT3L._SL1230_.jpg',
-//       'https://images-na.ssl-images-amazon.com/images/I/61qbqFcvoNL._SL1500_.jpg',
-//       'https://images-na.ssl-images-amazon.com/images/I/51HCjA3rqYL._SL1230_.jpg'
-//     ],
-//     description:
-//       '<p>A good gaming console. Plays games of PS4! Enjoy if you can buy it mwahahahaha</p>',
-//     attributes: [
-//       {
-//         id: 'Color',
-//         name: 'Color',
-//         type: 'swatch',
-//         items: [
-//           {
-//             id: 'Green',
-//             displayValue: 'Green',
-//             value: '#44FF03'
-//           },
-//           {
-//             id: 'Cyan',
-//             displayValue: 'Cyan',
-//             value: '#03FFF7'
-//           },
-//           {
-//             id: 'Blue',
-//             displayValue: 'Blue',
-//             value: '#030BFF'
-//           },
-//           {
-//             id: 'Black',
-//             displayValue: 'Black',
-//             value: '#000000'
-//           },
-//           {
-//             id: 'White',
-//             displayValue: 'White',
-//             value: '#FFFFFF'
-//           }
-//         ]
-//       },
-//       {
-//         id: 'Capacity',
-//         name: 'Capacity',
-//         type: 'text',
-//         items: [
-//           {
-//             id: '512G',
-//             displayValue: '512G',
-//             value: '512G'
-//           },
-//           {
-//             id: '1T',
-//             displayValue: '1T',
-//             value: '1T'
-//           }
-//         ]
-//       }
-//     ],
-//     prices: [
-//       {
-//         amount: 844.02
-//       },
-//       {
-//         amount: 606.67
-//       },
-//       {
-//         amount: 1088.79
-//       },
-//       {
-//         amount: 91147.25
-//       },
-//       {
-//         amount: 63826.91
-//       }
-//     ],
-//     brand: 'Sony'
-//   }
-// ];
+import ProductsList from 'components/ProductsList/ProductsList';
+import Header from 'components/Header/Header';
+import Product from 'components/Product/Product';
+import MainContainer from 'components/MainContainer/MainContainer';
+import Cart from 'components/Cart/Cart';
+import { GET_ALL_CATEGORIES } from 'query/categories';
 
 function withParams(Component) {
   // eslint-disable-next-line prettier/prettier
@@ -174,26 +30,32 @@ class OnlineStoreApp extends React.Component {
       categories: [],
       activeCategory: '',
       productsOfCategory: {},
-      currencies: []
+      currencies: [],
+      areProductsLoading: true
     };
   }
 
   async componentDidMount() {
+    console.log('dfdfdfdfdfd');
     const { categoryOrCart } = this.props.params;
     const categories = await this.fetchCategories();
     const activeCategory = categoryOrCart || categories[0].name;
     const productsOfCategory = await this.fetchProducts(activeCategory);
     const currencies = await this.fetchCurrencies();
-    const { dispatch } = this.props;
-    dispatch({
-      type: 'CHANGE_CURRENCY',
-      payload: currencies[0].symbol
-    });
+    const { dispatch, currency } = this.props;
+    console.log(currency);
+    if (currency === '') {
+      dispatch({
+        type: 'CHANGE_CURRENCY',
+        payload: currencies[0].symbol
+      });
+    }
     this.setState({
       categories,
       activeCategory,
       productsOfCategory,
-      currencies
+      currencies,
+      areProductsLoading: false
     });
   }
 
@@ -258,15 +120,20 @@ class OnlineStoreApp extends React.Component {
   };
 
   handleClickTab = async (category) => {
+    this.setState({
+      areProductsLoading: true
+    });
     const productsOfCategory = await this.fetchProducts(category);
     this.setState({
       activeCategory: category,
-      productsOfCategory
+      productsOfCategory,
+      areProductsLoading: false
     });
   };
 
   render() {
-    const { categories, productsOfCategory, activeCategory, currencies } = this.state;
+    const { categories, productsOfCategory, activeCategory, currencies, areProductsLoading } =
+      this.state;
 
     const { currency } = this.props;
     return (
@@ -282,7 +149,15 @@ class OnlineStoreApp extends React.Component {
         />
         <MainContainer>
           <Routes>
-            <Route path="/" element={<ProductsList products={productsOfCategory} />} />
+            <Route
+              path="/"
+              element={
+                <ProductsList
+                  products={productsOfCategory}
+                  areProductsLoading={areProductsLoading}
+                />
+              }
+            />
             <Route path=":id" element={<Product />} />
             <Route path=":id/cart" element={<Cart size="big" />} />
             <Route path="/cart" element={<Cart size="big" />} />

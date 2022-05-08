@@ -1,20 +1,10 @@
 /* eslint-disable no-param-reassign */
-import { ADD_PRODUCT, REMOVE_PRODUCT, SET_ATTRIBUTE } from './cartProductsActions';
-
-// const defaultState = {
-//   products: [
-//     {
-//       idProduct: '',
-//       amount: 0,
-//       attributes: [
-//         {
-//           idAttribute: '',
-//           idCurrentValue: ''
-//         }
-//       ]
-//     }
-//   ]
-// };
+import {
+  ADD_PRODUCT,
+  INCREASE_PRODUCT_QUANTITY,
+  DECREASE_PRODUCT_QUANTITY,
+  SET_ATTRIBUTE
+} from './cartProductsActions';
 
 const defaultState = {
   products: []
@@ -23,62 +13,112 @@ const defaultState = {
 // eslint-disable-next-line default-param-last
 const cartProductsReducer = (state = defaultState, action) => {
   switch (action.type) {
+    case INCREASE_PRODUCT_QUANTITY: {
+      const stateCopy = state.products.map((value) => ({ ...value }));
+      return {
+        ...state,
+        // eslint-disable-next-line no-return-assign
+        products: stateCopy.map((product) =>
+          product.id === action.payload
+            ? {
+                ...product,
+                value: (product.value += 1)
+              }
+            : product
+        )
+      };
+    }
+    case DECREASE_PRODUCT_QUANTITY: {
+      const stateCopy = state.products.map((value) => ({ ...value }));
+      const newState = stateCopy.reduce((prev, product) => {
+        if (product.id === action.payload) {
+          if (product.value !== 1) {
+            product.value -= 1;
+            prev.push(product);
+            return prev;
+          }
+          return prev;
+        }
+        prev.push(product);
+        return prev;
+      }, []);
+      return {
+        ...state,
+        products: [...newState]
+      };
+    }
     case ADD_PRODUCT: {
-      // eslint-disable-next-line no-case-declarations
-      const { products } = state;
-      const isProductInState = products.filter((item) => item.id === action.payload.id).length > 0;
-      if (products.length === 0 || !isProductInState) {
-        // eslint-disable-next-line no-param-reassign
+      const productsCopy = state.products.map((value) => ({ ...value }));
+      const isProductInState =
+        productsCopy.filter((item) => item.id === action.payload.id).length > 0;
+      if (!isProductInState) {
         action.payload.value = 1;
         return { ...state, products: [...state.products, action.payload] };
       }
-      const newState = products.map((item) => {
+      const newProducts = productsCopy.map((item) => {
         if (item.id === action.payload.id) {
-          // eslint-disable-next-line no-param-reassign
           item.value += 1;
           return item;
         }
         return item;
       });
-      return { ...state, products: [...newState] };
-    }
-    case REMOVE_PRODUCT: {
-      // eslint-disable-next-line no-case-declarations
-      const { products } = state;
-      const newState = products.map((item) => {
-        if (item.id === action.payload.id) {
-          // eslint-disable-next-line no-param-reassign
-          item.value -= 1;
-          return item;
-        }
-        return item;
-      });
-      const filteredArr = newState.filter((item) => item.value !== 0);
-      return { ...state, products: [...filteredArr] };
+      return { ...state, products: [...newProducts] };
     }
     case SET_ATTRIBUTE: {
-      const { products } = state;
-      const newState = products.map((product) => {
-        if (product.id === action.payload.id) {
-          product.attributes.map((attribute) => {
-            if (attribute.name === action.payload.name) {
-              attribute.items.map((value) => {
-                if (value.displayValue === action.payload.value) {
-                  value.isChecked = true;
-                } else if (value.isChecked) {
-                  delete value.isChecked;
-                }
-                return value;
-              });
-            }
-            return attribute;
-          });
-        }
-        return product;
-      });
-      console.log(newState);
-      return { ...state, products: [...newState] };
+      console.log(action.payload);
+
+      const productsCopy = state.products.map((value) => ({ ...value }));
+      const indexOfChangedProduct = productsCopy.indexOf(
+        (item) => item.id === action.payload.idProduct
+      );
+      const changedProduct = productsCopy.find((item) => item.id === action.payload.idProduct);
+
+      console.log(productsCopy);
+      // const newProducts = productsCopy.map((product) => {
+      //   if (product.id === action.payload.idProduct) {
+      //     product.attributes.map((attribute) => {
+      //       if (attribute.name === action.payload.name) {
+      //         attribute.items.map((value) => {
+      //           if (value.displayValue === action.payload.value) {
+      //             value.isChecked = true;
+      //           } else if (value.isChecked) {
+      //             delete value.isChecked;
+      //           }
+      //           return value;
+      //         });
+      //       }
+      //       return attribute;
+      //     });
+      //   }
+      //   return product;
+      // });
+      return {
+        ...state,
+        // eslint-disable-next-line no-return-assign
+        products: [...productsCopy]
+      };
     }
+
+    // const newState = productsCopy.map((product) => {
+    //   if (product.id === action.payload.id) {
+    //     product.attributes.map((attribute) => {
+    //       if (attribute.name === action.payload.name) {
+    //         attribute.items.map((value) => {
+    //           if (value.displayValue === action.payload.value) {
+    //             value.isChecked = true;
+    //           } else if (value.isChecked) {
+    //             delete value.isChecked;
+    //           }
+    //           return value;
+    //         });
+    //       }
+    //       return attribute;
+    //     });
+    //   }
+    //   return product;
+    // });
+    // return { ...state, products: [...newState] };
+    // }
     // eslint-disable-next-line no-fallthrough
     default:
       return state;

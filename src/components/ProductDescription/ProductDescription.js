@@ -1,10 +1,10 @@
 /* eslint-disable react/require-default-props */
 import React from 'react';
 import PropTypes from 'prop-types';
-// import { connect } from 'react-redux';
 
-import Attribute from '../Attribute/Attribute';
-import setPriceInCurrency from '../../utils/setPriceInCurrency';
+import Attribute from 'components/Attribute/Attribute';
+import setPriceInCurrency from 'utils/setPriceInCurrency';
+
 import styles from './productDescription.module.scss';
 
 class ProductDescription extends React.Component {
@@ -69,7 +69,6 @@ class ProductDescription extends React.Component {
       currency,
       handleAttributeChange
     } = this.props;
-    console.log(attributes);
     return (
       <div className={styles.container}>
         <p className={this.stylesBrand()}>{brand}</p>

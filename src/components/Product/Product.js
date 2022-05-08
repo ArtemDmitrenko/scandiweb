@@ -9,16 +9,14 @@
 import React from 'react';
 import { useParams } from 'react-router-dom';
 import { connect } from 'react-redux';
-
 import axios from 'axios';
 
-// import PropTypes from 'prop-types';
-import ThumbSlider from '../ThumbSlider/ThumbSlider';
+import ThumbSlider from 'components/ThumbSlider/ThumbSlider';
+import ProductDescription from 'components/ProductDescription/ProductDescription';
+import Button from 'components/Button/Button';
+import { ADD_PRODUCT } from 'redux/cartProducts/cartProductsActions';
 
 import styles from './product.module.scss';
-import ProductDescription from '../ProductDescription/ProductDescription';
-import Button from '../Button/Button';
-import { ADD_PRODUCT } from '../../redux/cartProducts/cartProductsActions';
 
 function withParams(Component) {
   // eslint-disable-next-line prettier/prettier

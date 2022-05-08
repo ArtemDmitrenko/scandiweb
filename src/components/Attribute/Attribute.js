@@ -2,7 +2,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import RadioButton from '../RadioButton/RadioButton';
+import RadioButton from 'components/RadioButton/RadioButton';
+
 import styles from './attribute.module.scss';
 
 class Attribute extends React.Component {

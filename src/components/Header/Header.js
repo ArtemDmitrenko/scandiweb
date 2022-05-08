@@ -1,9 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import Tabs from '../Tabs/Tabs';
-import Logo from '../Logo/Logo';
-import CartBasket from '../CartBasket/CartBasket';
-import CurrentChanger from '../CurrentChanger/CurrentChanger';
+
+import Tabs from 'components/Tabs/Tabs';
+import Logo from 'components/Logo/Logo';
+import CartBasket from 'components/CartBasket/CartBasket';
+import CurrentChanger from 'components/CurrentChanger/CurrentChanger';
 
 import styles from './header.module.scss';
 

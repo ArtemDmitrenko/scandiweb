@@ -1,12 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import BagItem from '../BagItem/BagItem';
-// import { connect } from 'react-redux';
 
-import Button from '../Button/Button';
-import calcTotalSum from '../../utils/calcTotalSum';
-import calcAmountOfItems from '../../utils/calcAmountOfItems';
-import convertNumToWordForm from '../../utils/convertNumToWordForm';
+import BagItem from 'components/BagItem/BagItem';
+import Button from 'components/Button/Button';
+import calcTotalSum from 'utils/calcTotalSum';
+import calcAmountOfItems from 'utils/calcAmountOfItems';
+import convertNumToWordForm from 'utils/convertNumToWordForm';
 
 import styles from './bag.module.scss';
 

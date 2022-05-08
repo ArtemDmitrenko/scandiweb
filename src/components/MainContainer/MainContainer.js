@@ -2,7 +2,8 @@
 /* eslint-disable class-methods-use-this */
 import React from 'react';
 import PropTypes from 'prop-types';
-import OverlayContext from '../../Context/OverlayContext';
+
+import OverlayContext from 'Context/OverlayContext';
 
 import styles from './mainContainer.module.scss';
 

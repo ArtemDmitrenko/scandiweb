@@ -9,10 +9,12 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import axios from 'axios';
-import setPriceInCurrency from '../../utils/setPriceInCurrency';
-import { ADD_PRODUCT } from '../../redux/cartProducts/cartProductsActions';
 
-import Card from '../Card/Card';
+import setPriceInCurrency from 'utils/setPriceInCurrency';
+import { ADD_PRODUCT } from 'redux/cartProducts/cartProductsActions';
+import Card from 'components/Card/Card';
+import LoadingSpinner from 'components/LoadingSpinner/LoadingSpinner';
+
 import styles from './productsList.module.scss';
 
 class ProductsList extends React.Component {
@@ -62,13 +64,16 @@ class ProductsList extends React.Component {
   render() {
     const {
       products: { products },
-      currency
+      currency,
+      areProductsLoading
     } = this.props;
-    return (
+    return areProductsLoading ? (
+      <LoadingSpinner />
+    ) : (
       <div className={styles.container}>
         {products && <h1 className={styles.title}>{this.props.products.name}</h1>}
         <ul className={styles.products}>
-          {products &&
+          {products.length > 0 ? (
             products.map(({ id, brand, name, prices, inStock, gallery }) => {
               return (
                 <li className={styles.product} key={id}>
@@ -84,7 +89,12 @@ class ProductsList extends React.Component {
                   />
                 </li>
               );
-            })}
+            })
+          ) : (
+            <p className={styles.text}>
+              Sorry, but there are no products in this group at the moment
+            </p>
+          )}
         </ul>
       </div>
     );

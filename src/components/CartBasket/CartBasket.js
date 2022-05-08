@@ -2,19 +2,18 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
-import OverlayContext from '../../Context/OverlayContext';
+import OverlayContext from 'Context/OverlayContext';
 import {
-  ADD_PRODUCT,
-  REMOVE_PRODUCT,
+  INCREASE_PRODUCT_QUANTITY,
+  DECREASE_PRODUCT_QUANTITY,
   SET_ATTRIBUTE
-} from '../../redux/cartProducts/cartProductsActions';
-
-import calcAmountOfItems from '../../utils/calcAmountOfItems';
-import getFormattedData from '../../utils/getFormattedData';
+} from 'redux/cartProducts/cartProductsActions';
+import Bag from 'components/Bag/Bag';
+import calcAmountOfItems from 'utils/calcAmountOfItems';
+import getFormattedData from 'utils/getFormattedData';
 
 import basket from './images/basket.svg';
 import styles from './cartBasket.module.scss';
-import Bag from '../Bag/Bag';
 
 class CartBasket extends React.Component {
   constructor(props) {
@@ -47,21 +46,20 @@ class CartBasket extends React.Component {
     return `${styles.total} ${products.length === 0 && styles.hidden}`;
   };
 
-  // eslint-disable-next-line class-methods-use-this
-  handleAmountChange = (product, action) => {
+  handleAmountChange = (id, action) => {
     // eslint-disable-next-line react/prop-types
     const { dispatch } = this.props;
     switch (action) {
       case 'increase':
         dispatch({
-          type: ADD_PRODUCT,
-          payload: product
+          type: INCREASE_PRODUCT_QUANTITY,
+          payload: id
         });
         break;
       case 'decrease':
         dispatch({
-          type: REMOVE_PRODUCT,
-          payload: product
+          type: DECREASE_PRODUCT_QUANTITY,
+          payload: id
         });
         break;
       default:
@@ -84,27 +82,36 @@ class CartBasket extends React.Component {
   // eslint-disable-next-line class-methods-use-this
   handleAttributeChange = (idProduct, name, value) => {
     // eslint-disable-next-line react/prop-types
-    const { products, dispatch } = this.props;
-    const changingProduct = products.filter((product) => product.id === idProduct);
-    const { attributes } = changingProduct[0];
-    const newArr = attributes.map((item) => {
-      if (item.name === name) {
-        item.items.forEach((attributeValue) => {
-          if (attributeValue.displayValue === value) {
-            // eslint-disable-next-line no-param-reassign
-            attributeValue.isChecked = true;
-          } else if (attributeValue.isChecked) {
-            // eslint-disable-next-line no-param-reassign
-            delete attributeValue.isChecked;
-          }
-        });
-      }
-      return item;
-    });
-    changingProduct.attributes = newArr;
+    const { dispatch } = this.props;
+    const payload = {
+      idProduct,
+      name,
+      value
+    };
+
+    // const productsCopy = products.map((item) => ({ ...item }));
+
+    // const changingProduct = productsCopy.filter((product) => product.id === idProduct);
+    // const { attributes } = changingProduct[0];
+    // const newArr = attributes.map((item) => {
+    //   if (item.name === name) {
+    //     item.items.forEach((attributeValue) => {
+    //       if (attributeValue.displayValue === value) {
+    //         // eslint-disable-next-line no-param-reassign
+    //         attributeValue.isChecked = true;
+    //       } else if (attributeValue.isChecked) {
+    //         // eslint-disable-next-line no-param-reassign
+    //         delete attributeValue.isChecked;
+    //       }
+    //     });
+    //   }
+    //   return item;
+    // });
+    // changingProduct[0].attributes = newArr;
+    // console.log(changingProduct[0]);
     dispatch({
       type: SET_ATTRIBUTE,
-      payload: changingProduct
+      payload
     });
     // this.setState({
     //   product

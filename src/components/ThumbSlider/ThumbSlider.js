@@ -3,6 +3,7 @@
 /* eslint-disable jsx-a11y/click-events-have-key-events */
 import React from 'react';
 import PropTypes from 'prop-types';
+
 import styles from './thumbSlider.module.scss';
 
 class ThumbSlider extends React.Component {
