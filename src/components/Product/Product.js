@@ -1,7 +1,3 @@
-/* eslint-disable no-param-reassign */
-/* eslint-disable react/jsx-props-no-spreading */
-/* eslint-disable react/display-name */
-/* eslint-disable react/function-component-definition */
 import React from 'react';
 import { useParams } from 'react-router-dom';
 import { connect } from 'react-redux';
@@ -16,7 +12,9 @@ import { fetchProduct } from 'api/fetch';
 import styles from './product.module.scss';
 
 function withParams(Component) {
-  return (props) => <Component {...props} params={useParams()} />;
+  return function wrapper(props) {
+    return <Component {...props} params={useParams()} />;
+  };
 }
 
 class Product extends React.Component {

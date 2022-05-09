@@ -21,7 +21,16 @@
   "rules": {
     "react/react-in-jsx-scope": "off",
     "react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx"] }],
-    "react/prefer-stateless-function": [0, { "ignorePureComponents": false }]
+    "react/prefer-stateless-function": [0, { "ignorePureComponents": false }],
+    "no-param-reassign": ["error", { "props": false }],
+    "react/jsx-props-no-spreading": [
+      0,
+      {
+        "html": "ignore",
+        "custom": "ignore",
+        "explicitSpread": "ignore"
+      }
+    ]
   },
   "settings": {
     "import/resolver": {

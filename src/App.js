@@ -1,6 +1,3 @@
-/* eslint-disable react/jsx-props-no-spreading */
-/* eslint-disable react/display-name */
-/* eslint-disable react/function-component-definition */
 import React from 'react';
 import { BrowserRouter as Router, useParams, Routes, Route, Navigate } from 'react-router-dom';
 import { connect } from 'react-redux';
@@ -16,7 +13,9 @@ import { fetchCategories, fetchCurrencies, fetchProducts } from 'api/fetch';
 import './style/style.scss';
 
 function withParams(Component) {
-  return (props) => <Component {...props} params={useParams()} />;
+  return function wrapper(props) {
+    return <Component {...props} params={useParams()} />;
+  };
 }
 
 class App extends React.Component {

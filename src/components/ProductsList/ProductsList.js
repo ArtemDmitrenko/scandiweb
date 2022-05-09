@@ -1,4 +1,3 @@
-/* eslint-disable class-methods-use-this */
 /* eslint-disable react/destructuring-assignment */
 import React from 'react';
 import PropTypes from 'prop-types';
@@ -24,9 +23,9 @@ class ProductsList extends React.Component {
     });
   };
 
+  // eslint-disable-next-line class-methods-use-this
   setDefaultAttributes = (product) => {
     product.attributes.forEach((attribute) => {
-      // eslint-disable-next-line no-param-reassign
       attribute.items[0].isChecked = true;
     });
     return product;
