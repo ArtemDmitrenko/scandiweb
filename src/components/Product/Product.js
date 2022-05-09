@@ -11,7 +11,7 @@ import ThumbSlider from 'components/ThumbSlider/ThumbSlider';
 import ProductDescription from 'components/ProductDescription/ProductDescription';
 import Button from 'components/Button/Button';
 import { ADD_PRODUCT } from 'redux/cartProducts/cartProductsActions';
-import { fetchProduct } from 'fetch/fetch';
+import { fetchProduct } from 'api/fetch';
 
 import styles from './product.module.scss';
 

@@ -11,7 +11,7 @@ import Header from 'components/Header/Header';
 import Product from 'components/Product/Product';
 import MainContainer from 'components/MainContainer/MainContainer';
 import Cart from 'components/Cart/Cart';
-import { fetchCategories, fetchCurrencies, fetchProducts } from 'fetch/fetch';
+import { fetchCategories, fetchCurrencies, fetchProducts } from 'api/fetch';
 
 function withParams(Component) {
   return (props) => <Component {...props} params={useParams()} />;

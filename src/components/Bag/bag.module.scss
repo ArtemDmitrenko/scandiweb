@@ -4,6 +4,10 @@
   max-width: 385px;
   padding: 32px 16px;
   background-color: white;
+
+  @media (max-width: 450px) {
+    max-width: 100%;
+  }
 }
 
 .title {

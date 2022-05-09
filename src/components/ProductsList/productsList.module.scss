@@ -20,6 +20,14 @@
 
 .product {
   width: 31%;
+
+  @media (max-width: 1183px) {
+    width: 47%;
+  }
+
+  @media (max-width: 700px) {
+    width: 100%;
+  }
 }
 
 .text {

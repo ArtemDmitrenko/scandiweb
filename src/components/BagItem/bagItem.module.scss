@@ -18,7 +18,11 @@
 
 .descriptionContainer {
   width: 50%;
-  margin-right: 4px;
+  margin-right: 10px;
+
+  @media (max-width: 480px) {
+    width: 100%;
+  }
 }
 
 .counterContainer {

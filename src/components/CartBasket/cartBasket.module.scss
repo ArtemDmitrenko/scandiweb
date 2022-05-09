@@ -37,6 +37,11 @@
   right: 0;
   z-index: 2;
   min-width: 340px;
+
+  @media (max-width: 450px) {
+    right: -34px;
+    min-width: 100vw;
+  }
 }
 
 .emptyList {

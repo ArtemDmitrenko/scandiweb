@@ -4,7 +4,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
-import { fetchProduct } from 'fetch/fetch';
+import { fetchProduct } from 'api/fetch';
 import setPriceInCurrency from 'utils/setPriceInCurrency';
 import { ADD_PRODUCT } from 'redux/cartProducts/cartProductsActions';
 import Card from 'components/Card/Card';
