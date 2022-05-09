@@ -24,7 +24,7 @@ class ProductsList extends React.Component {
     });
   };
 
-  static setDefaultAttributes = (product) => {
+  setDefaultAttributes = (product) => {
     product.attributes.forEach((attribute) => {
       // eslint-disable-next-line no-param-reassign
       attribute.items[0].isChecked = true;
@@ -33,19 +33,15 @@ class ProductsList extends React.Component {
   };
 
   render() {
-    const {
-      products: { products },
-      currency,
-      areProductsLoading
-    } = this.props;
+    const { products, currency, areProductsLoading } = this.props;
     return areProductsLoading ? (
       <LoadingSpinner />
     ) : (
       <div className={styles.container}>
         {products && <h1 className={styles.title}>{this.props.products.name}</h1>}
         <ul className={styles.products}>
-          {products.length > 0 ? (
-            products.map(({ id, brand, name, prices, inStock, gallery }) => {
+          {products && products.products.length > 0 ? (
+            products.products.map(({ id, brand, name, prices, inStock, gallery }) => {
               return (
                 <li className={styles.product} key={id}>
                   <Card
