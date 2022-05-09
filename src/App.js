@@ -9,6 +9,7 @@ import Product from 'components/Product/Product';
 import MainContainer from 'components/MainContainer/MainContainer';
 import Cart from 'components/Cart/Cart';
 import { fetchCategories, fetchCurrencies, fetchProducts } from 'api/fetch';
+import CHANGE_CURRENCY from 'redux/currency/currencyActions';
 
 import './style/style.scss';
 
@@ -41,7 +42,7 @@ class App extends React.Component {
     const { dispatch, currency } = this.props;
     if (currency === '') {
       dispatch({
-        type: 'CHANGE_CURRENCY',
+        type: CHANGE_CURRENCY,
         payload: currencies[0].symbol
       });
     }

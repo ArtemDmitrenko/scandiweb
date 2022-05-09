@@ -2,6 +2,8 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
+import CHANGE_CURRENCY from 'redux/currency/currencyActions';
+
 import styles from './currentChanger.module.scss';
 
 class CurrentChanger extends React.Component {
@@ -39,7 +41,7 @@ class CurrentChanger extends React.Component {
   handleClickOnCurrency = (symbol) => {
     const { dispatch } = this.props;
     dispatch({
-      type: 'CHANGE_CURRENCY',
+      type: CHANGE_CURRENCY,
       payload: symbol
     });
     this.setState((prevState) => ({

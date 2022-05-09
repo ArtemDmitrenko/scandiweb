@@ -74,8 +74,8 @@ class CartBasket extends React.Component {
     const { setOverlay } = this.context;
     const { products } = this.props;
     setOverlay();
-    const formatedData = getFormattedData(products);
-    alert(JSON.stringify(formatedData));
+    const formattedData = getFormattedData(products);
+    alert(JSON.stringify(formattedData));
   };
 
   handleAttributeChange = (idProduct, name, value) => {
