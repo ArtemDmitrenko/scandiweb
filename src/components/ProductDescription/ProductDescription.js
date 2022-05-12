@@ -25,7 +25,7 @@ class ProductDescription extends React.Component {
   renderBigPrice = () => {
     const { currency, prices } = this.props;
     const currentPrice =
-      prices.length === 0 || currency === '' ? '' : setPriceInCurrency(prices, currency);
+      prices.length === 0 || currency === '' ? '' : setPriceInCurrency(prices, currency).toFixed(2);
     return (
       <>
         <p className={styles.titlePrice}>Price:</p>
@@ -56,7 +56,7 @@ class ProductDescription extends React.Component {
         {isPriceOnTop && (
           <p className={this.stylesPrice()}>
             {currency}
-            {setPriceInCurrency(prices, currency)}
+            {setPriceInCurrency(prices, currency).toFixed(2)}
           </p>
         )}
         <ul className={styles.attributes}>

@@ -39,7 +39,7 @@ class Card extends React.Component {
           {brand} <span className={inStock ? styles.name : styles.disabledName}>{name}</span>
         </p>
         <p className={inStock ? styles.price : styles.disabledPrice}>
-          {currency} {price}
+          {currency} {price.toFixed(2)}
         </p>
       </Link>
     );
