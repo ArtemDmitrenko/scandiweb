@@ -47,6 +47,7 @@ class ProductDescription extends React.Component {
       prices,
       attributes,
       currency,
+      inStock,
       handleAttributeChange
     } = this.props;
     return (
@@ -71,6 +72,7 @@ class ProductDescription extends React.Component {
                   title={item.name}
                   items={item.items}
                   handleAttributeChange={handleAttributeChange}
+                  disabled={!inStock}
                 />
               </li>
             );
@@ -91,11 +93,13 @@ ProductDescription.propTypes = {
   prices: PropTypes.instanceOf(Array).isRequired,
   attributes: PropTypes.instanceOf(Array).isRequired,
   handleAttributeChange: PropTypes.func.isRequired,
-  currency: PropTypes.string.isRequired
+  currency: PropTypes.string.isRequired,
+  inStock: PropTypes.bool
 };
 
 ProductDescription.defaultProps = {
-  isPriceOnTop: false
+  isPriceOnTop: false,
+  inStock: true
 };
 
 export default ProductDescription;

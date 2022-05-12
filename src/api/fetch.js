@@ -9,7 +9,7 @@ async function fetchProduct(id) {
         query: `
         query Product($id: String!) {
           product(id: $id) {
-            id, name, gallery, description, attributes {id, name, type, items {id, displayValue, value}}, prices {amount, currency {symbol}}, brand
+            id, name, inStock, gallery, description, attributes {id, name, type, items {id, displayValue, value}}, prices {amount, currency {symbol}}, brand
           }
         }          
       `,

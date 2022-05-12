@@ -23,8 +23,16 @@ class RadioButton extends React.Component {
   };
 
   render() {
-    const { type, name, value, content, nameForRadioButtons, isDefaultChecked, onChange } =
-      this.props;
+    const {
+      type,
+      name,
+      value,
+      content,
+      nameForRadioButtons,
+      isDefaultChecked,
+      disabled,
+      onChange
+    } = this.props;
     return (
       // eslint-disable-next-line jsx-a11y/label-has-associated-control
       <label className={styles.radioButton}>
@@ -35,6 +43,7 @@ class RadioButton extends React.Component {
           value={value}
           checked={isDefaultChecked}
           onChange={() => onChange(name, value)}
+          disabled={disabled}
         />
         <div className={this.stylesOfContent()} style={this.inlineStyle()}>
           {type === 'swatch' ? '' : content}
@@ -52,12 +61,14 @@ RadioButton.propTypes = {
   value: PropTypes.string.isRequired,
   content: PropTypes.string.isRequired,
   isDefaultChecked: PropTypes.bool,
+  disabled: PropTypes.bool,
   onChange: PropTypes.func.isRequired,
   color: PropTypes.string
 };
 
 RadioButton.defaultProps = {
   isDefaultChecked: false,
+  disabled: false,
   color: '#44FF03'
 };
 

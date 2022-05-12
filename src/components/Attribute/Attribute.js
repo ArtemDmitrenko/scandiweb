@@ -7,7 +7,7 @@ import styles from './attribute.module.scss';
 
 class Attribute extends React.Component {
   render() {
-    const { type, size, nameForRadioButtons, title, name, items, handleAttributeChange } =
+    const { type, size, nameForRadioButtons, title, name, items, disabled, handleAttributeChange } =
       this.props;
 
     return (
@@ -25,7 +25,8 @@ class Attribute extends React.Component {
                   name={name}
                   value={displayValue}
                   content={value}
-                  isDefaultChecked={item.isChecked}
+                  isDefaultChecked={!disabled && item.isChecked}
+                  disabled={disabled}
                   color={value}
                   onChange={handleAttributeChange}
                 />
@@ -44,6 +45,7 @@ Attribute.propTypes = {
   size: PropTypes.string.isRequired,
   title: PropTypes.string.isRequired,
   name: PropTypes.string.isRequired,
+  disabled: PropTypes.bool,
   handleAttributeChange: PropTypes.func.isRequired,
   items: PropTypes.arrayOf(
     PropTypes.shape({
@@ -52,6 +54,10 @@ Attribute.propTypes = {
       value: PropTypes.string.isRequired
     })
   ).isRequired
+};
+
+Attribute.defaultProps = {
+  disabled: false
 };
 
 export default Attribute;

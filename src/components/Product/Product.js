@@ -83,6 +83,7 @@ class Product extends React.Component {
       id,
       gallery,
       brand = '',
+      inStock,
       name = '',
       prices = [],
       attributes = [],
@@ -113,10 +114,13 @@ class Product extends React.Component {
               attributes={attributes}
               handleAttributeChange={this.handleAttributeChange}
               currency={currency}
+              inStock={inStock}
             />
-            <div className={styles.button}>
-              <Button isButton buttonType="submit" text="add to cart" type="solid" />
-            </div>
+            {inStock && (
+              <div className={styles.button}>
+                <Button isButton buttonType="submit" text="add to cart" type="solid" />
+              </div>
+            )}
           </form>
           <div
             className={styles.descriptionText}
