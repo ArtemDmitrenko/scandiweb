@@ -37,6 +37,8 @@
   right: 0;
   z-index: 2;
   min-width: 340px;
+  max-height: 680px;
+  overflow-y: scroll;
 
   @media (max-width: 450px) {
     right: -34px;
