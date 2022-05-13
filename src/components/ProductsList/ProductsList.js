@@ -1,4 +1,3 @@
-/* eslint-disable react/destructuring-assignment */
 import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
@@ -36,7 +35,7 @@ class ProductsList extends React.Component {
       <LoadingSpinner />
     ) : (
       <div className={styles.container}>
-        {products && <h1 className={styles.title}>{this.props.products.name}</h1>}
+        {products && <h1 className={styles.title}>{products.name}</h1>}
         <ul className={styles.products}>
           {products && products.products.length > 0 ? (
             products.products.map(({ id, brand, name, prices, inStock, gallery }) => {

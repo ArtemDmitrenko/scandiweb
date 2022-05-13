@@ -1,4 +1,3 @@
-/* eslint-disable no-param-reassign */
 import {
   ADD_PRODUCT,
   INCREASE_PRODUCT_QUANTITY,
