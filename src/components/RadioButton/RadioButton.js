@@ -22,17 +22,15 @@ class RadioButton extends React.Component {
     return {};
   };
 
+  handleButtonClick = (e, name, value) => {
+    const { onChange } = this.props;
+    onChange(name, value);
+    e.stopPropagation();
+  };
+
   render() {
-    const {
-      type,
-      name,
-      value,
-      content,
-      nameForRadioButtons,
-      isDefaultChecked,
-      disabled,
-      onChange
-    } = this.props;
+    const { type, name, value, content, nameForRadioButtons, isDefaultChecked, disabled } =
+      this.props;
     return (
       // eslint-disable-next-line jsx-a11y/label-has-associated-control
       <label className={styles.radioButton}>
@@ -42,7 +40,7 @@ class RadioButton extends React.Component {
           name={nameForRadioButtons + name}
           value={value}
           checked={isDefaultChecked}
-          onChange={() => onChange(name, value)}
+          onChange={(e) => this.handleButtonClick(e, name, value)}
           disabled={disabled}
         />
         <div className={this.stylesOfContent()} style={this.inlineStyle()}>

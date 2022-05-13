@@ -17,18 +17,25 @@ class Bag extends React.Component {
     return `${amount} ${wordInCorrectForm}`;
   };
 
-  handleAttributeChange = (id, name, value) => {
-    const { handleAttributeChange } = this.props;
-    handleAttributeChange(id, name, value);
+  handleAmountChange = (action, index) => {
+    const { handleAmountChange } = this.props;
+    handleAmountChange(index, action);
+  };
+
+  // eslint-disable-next-line class-methods-use-this
+  setKey = (product, index) => {
+    const { name, attributes } = product;
+    const attributesInString = JSON.stringify(attributes);
+    return `${name}${attributesInString}${index}`;
   };
 
   render() {
     const {
       size,
       products,
-      handleAmountChange,
       currency,
       handleButtonViewBagClick,
+      handleAttributeChange,
       handleButtonCheckoutClick
     } = this.props;
     return (
@@ -37,17 +44,16 @@ class Bag extends React.Component {
           My Bag, <span className={styles.amountOfItems}>{this.renderAmountOfItems()}</span>
         </p>
         <ul className={styles.listOfProducts}>
-          {products.map((product) => (
-            <li className={styles.product} key={product.name}>
+          {products.map((product, index) => (
+            <li className={styles.product} key={this.setKey(product, index)}>
               <BagItem
+                index={index}
                 componentLocation="bag"
                 size={size}
                 product={product}
-                handleAmountChange={handleAmountChange}
+                handleAmountChange={(action) => this.handleAmountChange(action, index)}
                 currency={currency}
-                handleAttributeChange={(name, value) =>
-                  this.handleAttributeChange(product.id, name, value)
-                }
+                handleAttributeChange={(name, value) => handleAttributeChange(index, name, value)}
               />
             </li>
           ))}

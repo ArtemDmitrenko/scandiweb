@@ -46,19 +46,19 @@ class CartBasket extends React.Component {
     return `${styles.total} ${products.length === 0 && styles.hidden}`;
   };
 
-  handleAmountChange = (id, action) => {
+  handleAmountChange = (index, action) => {
     const { dispatch } = this.props;
     switch (action) {
       case 'increase':
         dispatch({
           type: INCREASE_PRODUCT_QUANTITY,
-          payload: id
+          payload: index
         });
         break;
       case 'decrease':
         dispatch({
           type: DECREASE_PRODUCT_QUANTITY,
-          payload: id
+          payload: index
         });
         break;
       default:
@@ -78,10 +78,10 @@ class CartBasket extends React.Component {
     alert(JSON.stringify(formattedData));
   };
 
-  handleAttributeChange = (idProduct, name, value) => {
+  handleAttributeChange = (index, name, value) => {
     const { dispatch } = this.props;
     const payload = {
-      idProduct,
+      index,
       name,
       value
     };

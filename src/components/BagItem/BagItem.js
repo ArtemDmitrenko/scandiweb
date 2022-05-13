@@ -8,24 +8,21 @@ import Slider from 'components/Slider/Slider';
 import styles from './bagItem.module.scss';
 
 class BagItem extends React.Component {
-  handleAmountChange = (action) => {
-    const { handleAmountChange, product } = this.props;
-    handleAmountChange(product.id, action);
-  };
-
   render() {
     const {
       size,
       product: { id, brand, name, prices, attributes, gallery, value },
       currency,
       componentLocation,
-      handleAttributeChange
+      index,
+      handleAttributeChange,
+      handleAmountChange
     } = this.props;
     return (
       <div className={styles.item}>
         <div className={styles.descriptionContainer}>
           <ProductDescription
-            nameForRadioButtons={id + componentLocation}
+            nameForRadioButtons={id + componentLocation + index}
             size={size}
             isPriceOnTop
             brand={brand}
@@ -42,7 +39,7 @@ class BagItem extends React.Component {
               maxAmount={10}
               size={size}
               defAmount={value}
-              handleAmountChange={this.handleAmountChange}
+              handleAmountChange={handleAmountChange}
             />
           </div>
           {size === 'small' ? (
@@ -66,7 +63,8 @@ BagItem.propTypes = {
   product: PropTypes.instanceOf(Object).isRequired,
   handleAmountChange: PropTypes.func.isRequired,
   currency: PropTypes.string.isRequired,
-  handleAttributeChange: PropTypes.func.isRequired
+  handleAttributeChange: PropTypes.func.isRequired,
+  index: PropTypes.number.isRequired
 };
 
 export default BagItem;

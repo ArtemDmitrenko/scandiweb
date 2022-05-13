@@ -30,19 +30,22 @@ class Product extends React.Component {
       params: { id }
     } = this.props;
     const product = await fetchProduct(id);
-    this.setDefaultAttributes(product);
+    const productWithDefAttributes = this.setDefaultAttributes(product);
     this.setState({
-      product
+      product: productWithDefAttributes
     });
   }
 
+  // eslint-disable-next-line class-methods-use-this
   setDefaultAttributes = (product) => {
-    product.attributes.forEach((attribute) => {
-      attribute.items[0].isChecked = true;
-    });
-    this.setState({
-      product
-    });
+    if (product.attributes || product.attributes.length > 0) {
+      const defaultAttributes = product.attributes.map((attribute) => {
+        attribute.items[0].isChecked = true;
+        return attribute;
+      });
+      product.attributes = defaultAttributes;
+    }
+    return product;
   };
 
   handleAttributeChange = (name, value) => {
@@ -67,9 +70,9 @@ class Product extends React.Component {
   };
 
   handleSubmit = (e) => {
+    e.preventDefault();
     const { dispatch } = this.props;
     const { product } = this.state;
-    e.preventDefault();
     dispatch({
       type: ADD_PRODUCT,
       payload: product
@@ -140,7 +143,6 @@ Product.propTypes = {
 
 const mapStateToProps = (store) => {
   return {
-    products: store.cartProductsReducer.products,
     currency: store.currencyReducer.currency
   };
 };

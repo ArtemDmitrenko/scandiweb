@@ -21,13 +21,13 @@ class Counter extends React.Component {
 
   increase = (e) => {
     const { handleAmountChange } = this.props;
-    handleAmountChange('increase', e);
+    handleAmountChange('increase');
     e.stopPropagation();
   };
 
   decrease = (e) => {
     const { handleAmountChange } = this.props;
-    handleAmountChange('decrease', e);
+    handleAmountChange('decrease');
     e.stopPropagation();
   };
 
