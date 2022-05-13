@@ -2,6 +2,7 @@ import React from 'react';
 import { useParams } from 'react-router-dom';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
+import DOMPurify from 'dompurify';
 
 import ThumbSlider from 'components/ThumbSlider/ThumbSlider';
 import ProductDescription from 'components/ProductDescription/ProductDescription';
@@ -92,6 +93,7 @@ class Product extends React.Component {
       attributes = [],
       description
     } = product;
+    const sanitizerDescription = DOMPurify.sanitize;
     const componentLocation = 'product';
     return (
       <div className={styles.container}>
@@ -127,7 +129,7 @@ class Product extends React.Component {
           </form>
           <div
             className={styles.descriptionText}
-            dangerouslySetInnerHTML={{ __html: description }}
+            dangerouslySetInnerHTML={{ __html: sanitizerDescription(description) }}
           />
         </div>
       </div>
