@@ -39,7 +39,8 @@ class Counter extends React.Component {
           type="button"
           className={this.stylesButton()}
           onClick={(e) => this.increase(e)}
-          disabled={defAmount === maxAmount}>
+          disabled={defAmount === maxAmount}
+        >
           <div className={styles.plus} />
         </button>
         <input disabled name="amount" className={this.stylesInput()} value={defAmount} />
@@ -47,7 +48,8 @@ class Counter extends React.Component {
           disabled={defAmount === 0}
           type="button"
           className={this.stylesButton()}
-          onClick={(e) => this.decrease(e)}>
+          onClick={(e) => this.decrease(e)}
+        >
           <div className={styles.minus} />
         </button>
       </div>

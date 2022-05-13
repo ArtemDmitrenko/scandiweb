@@ -10,23 +10,22 @@ import convertNumToWordForm from 'utils/convertNumToWordForm';
 import styles from './bag.module.scss';
 
 class Bag extends React.Component {
-  renderAmountOfItems = () => {
-    const { products } = this.props;
-    const amount = calcAmountOfItems(products);
-    const wordInCorrectForm = convertNumToWordForm(amount, ['item', 'items']);
-    return `${amount} ${wordInCorrectForm}`;
-  };
-
   handleAmountChange = (action, index) => {
     const { handleAmountChange } = this.props;
     handleAmountChange(index, action);
   };
 
-  // eslint-disable-next-line class-methods-use-this
-  setKey = (product, index) => {
+  static setKey = (product, index) => {
     const { name, attributes } = product;
     const attributesInString = JSON.stringify(attributes);
     return `${name}${attributesInString}${index}`;
+  };
+
+  renderAmountOfItems = () => {
+    const { products } = this.props;
+    const amount = calcAmountOfItems(products);
+    const wordInCorrectForm = convertNumToWordForm(amount, ['item', 'items']);
+    return `${amount} ${wordInCorrectForm}`;
   };
 
   render() {
@@ -45,7 +44,7 @@ class Bag extends React.Component {
         </p>
         <ul className={styles.listOfProducts}>
           {products.map((product, index) => (
-            <li className={styles.product} key={this.setKey(product, index)}>
+            <li className={styles.product} key={Bag.setKey(product, index)}>
               <BagItem
                 index={index}
                 componentLocation="bag"

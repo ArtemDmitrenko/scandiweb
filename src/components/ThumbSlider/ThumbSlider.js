@@ -26,12 +26,12 @@ class ThumbSlider extends React.Component {
       <div className={styles.container}>
         <ul className={styles.thumbContainer}>
           {images.map((imgSrc) => (
-            // eslint-disable-next-line jsx-a11y/click-events-have-key-events
-            <li
-              key={imgSrc}
-              className={styles.thumbImageContainer}
-              onClick={() => this.handleClickOnImage(imgSrc)}>
-              <button type="button" className={styles.button}>
+            <li key={imgSrc} className={styles.thumbImageContainer}>
+              <button
+                type="button"
+                className={styles.button}
+                onClick={() => this.handleClickOnImage(imgSrc)}
+              >
                 <img className={styles.image} src={imgSrc} alt="Product" />
               </button>
             </li>

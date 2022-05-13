@@ -19,11 +19,13 @@ class Tabs extends React.Component {
             return (
               <li
                 className={`${styles.listItem} ${activeCategory === name ? styles.active : ''}`}
-                key={name}>
+                key={name}
+              >
                 <Link
                   to={`/${name}`}
                   className={styles.button}
-                  onClick={() => this.handleClick(name)}>
+                  onClick={() => this.handleClick(name)}
+                >
                   {name}
                 </Link>
               </li>

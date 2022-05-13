@@ -15,7 +15,7 @@ class ProductsList extends React.Component {
   handleClickOnButton = async (id, e) => {
     e.preventDefault();
     const product = await fetchProduct(id);
-    const productWithSetAttributes = this.setDefaultAttributes(product);
+    const productWithSetAttributes = ProductsList.setDefaultAttributes(product);
     const { dispatch } = this.props;
     dispatch({
       type: ADD_PRODUCT,
@@ -23,8 +23,7 @@ class ProductsList extends React.Component {
     });
   };
 
-  // eslint-disable-next-line class-methods-use-this
-  setDefaultAttributes = (product) => {
+  static setDefaultAttributes = (product) => {
     product.attributes.forEach((attribute) => {
       attribute.items[0].isChecked = true;
     });

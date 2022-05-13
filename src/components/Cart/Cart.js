@@ -54,8 +54,7 @@ class Cart extends React.Component {
     alert(JSON.stringify(formattedData));
   };
 
-  // eslint-disable-next-line class-methods-use-this
-  setKey = (product, index) => {
+  static setKey = (product, index) => {
     const { name, attributes } = product;
     const attributesInString = JSON.stringify(attributes);
     return `${name}${attributesInString}${index}`;
@@ -69,7 +68,7 @@ class Cart extends React.Component {
         <ul className={styles.list}>
           {products.length > 0 ? (
             products.map((product, index) => (
-              <li className={styles.product} key={this.setKey(product, index)}>
+              <li className={styles.product} key={Cart.setKey(product, index)}>
                 <BagItem
                   componentLocation="cart"
                   index={index}

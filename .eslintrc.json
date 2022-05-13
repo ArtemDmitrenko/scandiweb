@@ -17,8 +17,9 @@
     "ecmaVersion": "latest",
     "sourceType": "module"
   },
-  "plugins": ["react", "jam3"],
+  "plugins": ["react", "jam3", "prettier"],
   "rules": {
+    "prettier/prettier": "off",
     "react/react-in-jsx-scope": "off",
     "react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx"] }],
     "react/prefer-stateless-function": [0, { "ignorePureComponents": false }],

@@ -20,7 +20,8 @@ class Button extends React.Component {
         type={buttonType === 'submit' ? 'submit' : 'button'}
         disabled={disabled}
         className={this.setButtonStyles()}
-        onClick={onClick}>
+        onClick={onClick}
+      >
         {text}
       </button>
     ) : (
@@ -29,7 +30,8 @@ class Button extends React.Component {
         type={buttonType === 'submit' ? 'submit' : 'button'}
         disabled={disabled}
         onClick={onClick}
-        className={this.setButtonStyles()}>
+        className={this.setButtonStyles()}
+      >
         {text}
       </Link>
     );

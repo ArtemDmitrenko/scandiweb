@@ -31,14 +31,13 @@ class Product extends React.Component {
       params: { id }
     } = this.props;
     const product = await fetchProduct(id);
-    const productWithDefAttributes = this.setDefaultAttributes(product);
+    const productWithDefAttributes = Product.setDefaultAttributes(product);
     this.setState({
       product: productWithDefAttributes
     });
   }
 
-  // eslint-disable-next-line class-methods-use-this
-  setDefaultAttributes = (product) => {
+  static setDefaultAttributes = (product) => {
     if (product.attributes || product.attributes.length > 0) {
       const defaultAttributes = product.attributes.map((attribute) => {
         attribute.items[0].isChecked = true;

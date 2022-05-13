@@ -71,7 +71,8 @@ class CurrentChanger extends React.Component {
                 <button
                   className={styles.buttonSelect}
                   onClick={this.handleClickOnCurrency.bind(this, symbol)}
-                  type="button">
+                  type="button"
+                >
                   {symbol} {label}
                 </button>
               </li>
